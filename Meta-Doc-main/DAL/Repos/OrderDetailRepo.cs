@@ -21,7 +21,7 @@ namespace DAL.Repos
         public bool Delete(int id)
         {
             var ex = Get(id);
-            db.DiseaseSymptoms.Remove(ex);
+            db.OrderDetails.Remove(ex);
             return db.SaveChanges() > 0;
         }
 

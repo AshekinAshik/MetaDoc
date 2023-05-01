@@ -19,7 +19,13 @@ namespace DAL.Models
         [Required]
         public string Password { get; set; }
         public string Location { get; set; }
-        [Required]
-        public string Role { get; set; }
+
+        //public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public Pharmacy()
+        {
+            //Products = new List<Product>();
+            Orders = new List<Order>();
+        }
     }
 }

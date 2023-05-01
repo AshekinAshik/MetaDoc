@@ -24,7 +24,12 @@ namespace DAL.Models
         [ForeignKey("Doctor")]
         public int Doctor_Id { get; set; }
 
-        public virtual Doctor Doctors { get; set; }
+        public virtual Doctor Doctor { get; set; }
 
+        //public virtual ICollection<PatientAppointment> PatientAppointments { get; set; }
+        //public DiseaseSymptom()
+        //{
+        //    PatientAppointments = new List<PatientAppointment>();
+        //}
     }
 }

@@ -14,10 +14,9 @@ namespace DAL.Models
         public int Id { get; set; }
         [Required]
         public string Status { get { return Status; } set { Status = "unpaid"; } }
+        public DateTime PaymentDate { get; set; }
         [ForeignKey("Patient")]
         public int Patient_Id { get; set; }
-
-        public virtual Patient Patients { get; set; }
-        
+        public virtual Patient Patient { get; set; }
     }
 }

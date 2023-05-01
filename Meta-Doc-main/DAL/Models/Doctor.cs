@@ -24,11 +24,15 @@ namespace DAL.Models
         [Required]
         public string Degree { get; set; }
         public string Chamber { get; set; }
-        [Required]
-        public string Role { get; set; }
-        [ForeignKey("Review")]
-        public int Review_Id { get; set; }
 
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<PatientAppointment> PatientAppointments { get; set; }
+        public virtual ICollection<DiseaseSymptom> DiseaseSymptoms { get; set; }
+        public Doctor()
+        {
+            Reviews = new List<Review>();
+            PatientAppointments = new List<PatientAppointment>();
+            DiseaseSymptoms = new List<DiseaseSymptom>();
+        }
     }
 }

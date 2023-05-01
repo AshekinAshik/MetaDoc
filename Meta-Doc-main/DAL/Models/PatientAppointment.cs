@@ -15,13 +15,14 @@ namespace DAL.Models
         [Required]
         public DateTime AppointmentDate { get; set; }
         public string Status { get { return Status; } set { Status = "approve"; } }
-
-        [ForeignKey("DiseaseSymptom")]
-        public int Disease_Id { get; set; }
-
+        [ForeignKey("Doctor")]
+        public int Doctor_Id { get; set; }
+        //[ForeignKey("DiseaseSymptom")]
+        //public int Disease_Id { get; set; }
         [ForeignKey("Patient")]
         public int Patient_Id { get; set; }
-        public virtual DiseaseSymptom DiseaseSymptoms { get; set; }
-        public virtual Patient Patients { get; set; }
+        public virtual DiseaseSymptom DiseaseSymptom { get; set; }
+        public virtual Patient Patient { get; set; }
+        public virtual Doctor Doctor { get; set; }
     }
 }

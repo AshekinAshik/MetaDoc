@@ -27,9 +27,21 @@ namespace DAL.Models
         [Required]
         public string Gender { get; set; }
         public string Profession { get; set; }
-        [ForeignKey("Pharmacy")]
-        public int Pharmacy_Id { get; set; }
-        public virtual Pharmacy Pharmacies { get; set; }
 
+        //[ForeignKey("Pharmacy")]
+        //public int Pharmacy_Id { get; set; }
+
+        //public virtual Pharmacy Pharmacies { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<PatientAppointment> PatientAppointments { get; set; }
+        public Patient()
+        {
+            Reviews = new List<Review>();
+            Payments = new List<Payment>();
+            Orders = new List<Order>();
+            PatientAppointments =  new List<PatientAppointment>();
+        }
     }
 }

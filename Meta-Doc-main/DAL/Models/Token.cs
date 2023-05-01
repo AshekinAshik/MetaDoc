@@ -19,7 +19,7 @@ namespace DAL.Models
         public DateTime DeletedAt { get; set; }
         [Required]
         [ForeignKey("User")]
-        public string User_Id { get; set; }
-        public virtual User Users { get; set; }
+        public int User_Id { get; set; }
+        public virtual User User { get; set; }
     }
 }

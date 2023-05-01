@@ -54,6 +54,19 @@
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
+    <Compile Include="Migrations\202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.cs" />
+    <Compile Include="Migrations\202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.designer.cs">
+      <DependentUpon>202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011936272_initDB_withSeedingDoctorPatientPharmacy.cs" />
+    <Compile Include="Migrations\202305011936272_initDB_withSeedingDoctorPatientPharmacy.designer.cs">
+      <DependentUpon>202305011936272_initDB_withSeedingDoctorPatientPharmacy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.cs" />
+    <Compile Include="Migrations\202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.designer.cs">
+      <DependentUpon>202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DiseaseSymptom.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
@@ -84,10 +97,20 @@
     <Compile Include="Repos\TokenRepo.cs" />
     <Compile Include="Repos\UserRepo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.resx">
+      <DependentUpon>202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011936272_initDB_withSeedingDoctorPatientPharmacy.resx">
+      <DependentUpon>202305011936272_initDB_withSeedingDoctorPatientPharmacy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.resx">
+      <DependentUpon>202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
