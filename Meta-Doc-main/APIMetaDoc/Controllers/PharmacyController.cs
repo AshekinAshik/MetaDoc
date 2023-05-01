@@ -1,4 +1,5 @@
-﻿using BLL.DTOs;
+﻿using APIMetaDoc.Auth;
+using BLL.DTOs;
 using BLL.Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace APIMetaDoc.Controllers
 {
     public class PharmacyController : ApiController
     {
+        [Logged]
         [HttpGet]
         [Route("api/pharmacies")]
         public HttpResponseMessage Pharmacies()
@@ -27,6 +29,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpGet]
         [Route("api/pharmacies/{id}")]
         public HttpResponseMessage Pharmacies(int Id)
@@ -42,6 +45,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpPost]
         [Route("api/pharmacies/create")]
         public HttpResponseMessage Create(PharmacyDTO data)
@@ -57,6 +61,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpPost]
         [Route("api/pharmacies/update")]
         public HttpResponseMessage Update(PharmacyDTO data)
@@ -79,20 +84,21 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Project not found");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Pharmacy not found");
         }
 
+        [Logged]
         [HttpPost]
-        [Route("api/pharmacies/delete")]
-        public HttpResponseMessage Delete(PharmacyDTO data)
+        [Route("api/pharmacies/delete/{id}")]
+        public HttpResponseMessage Delete(int Id)
         {
-            var exmp = PharmacyService.Get(data.Id);
+            var exmp = PharmacyService.Get(Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = PharmacyService.Delete(data.Id);
+                    var res = PharmacyService.Delete(Id);
                     return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
 
                 }
@@ -102,7 +108,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Member not found");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Pharmacy not found");
         }
     }
 }

@@ -38,14 +38,16 @@ namespace BLL.Services
 
         public static PharmacyDTO Create(PharmacyDTO obj) // Need To Be Sure About This
         {
-            var data = DataAccessFactory.PharmacyData().Create(obj);
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Pharmacy, PharmacyDTO>();
+                c.CreateMap<PharmacyDTO, Pharmacy>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<PharmacyDTO>(data);
-            return mapped;
+            var data = mapper.Map<Pharmacy>(obj);
+            var result = DataAccessFactory.PharmacyData().Create(data);
+            var redata = mapper.Map<PharmacyDTO>(result);
+            return redata;
         }
 
         public static PharmacyDTO Delete(int Id)
@@ -62,14 +64,16 @@ namespace BLL.Services
 
         public static PharmacyDTO Update(PharmacyDTO obj)
         {
-            var data = DataAccessFactory.PharmacyData().Update(obj);
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Pharmacy, PharmacyDTO>();
+                c.CreateMap<PharmacyDTO, Pharmacy>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<PharmacyDTO>(data);
-            return mapped;
+            var data = mapper.Map<Pharmacy>(obj);
+            var result = DataAccessFactory.PharmacyData().Update(data);
+            var redata = mapper.Map<PharmacyDTO>(result);
+            return redata;
         }
     }
 }

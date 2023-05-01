@@ -35,5 +35,45 @@ namespace BLL.Services
             var mapped = mapper.Map<DiseaseSymptomDTO>(data);
             return mapped;
         }
+
+        public static DiseaseSymptomDTO Create(DiseaseSymptomDTO obj) // Need To Be Sure About This
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<DiseaseSymptom, DiseaseSymptomDTO>();
+                c.CreateMap<DiseaseSymptomDTO, DiseaseSymptom>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<DiseaseSymptom>(obj);
+            var result = DataAccessFactory.DiseaseSymptomData().Create(data);
+            var redata = mapper.Map<DiseaseSymptomDTO>(result);
+            return redata;
+        }
+
+        public static DiseaseSymptomDTO Delete(int Id)
+        {
+            var data = DataAccessFactory.DiseaseSymptomData().Delete(Id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<DiseaseSymptom, DiseaseSymptomDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<DiseaseSymptomDTO>(data);
+            return mapped;
+        }
+
+        public static DiseaseSymptomDTO Update(DiseaseSymptomDTO obj)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<DiseaseSymptom, DiseaseSymptomDTO>();
+                c.CreateMap<DiseaseSymptomDTO, DiseaseSymptom>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<DiseaseSymptom>(obj);
+            var result = DataAccessFactory.DiseaseSymptomData().Update(data);
+            var redata = mapper.Map<DiseaseSymptomDTO>(result);
+            return redata;
+        }
     }
 }

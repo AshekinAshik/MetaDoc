@@ -18,7 +18,6 @@ namespace DAL.Models
         public string Symptoms { get; set; }
         [Required]
         public string Catagory { get; set; }
-
         [Required]
         public int AppointmentCost { get; set; }
 

@@ -57,8 +57,10 @@
     <Compile Include="DTOs\PharmacyDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\ReviewDTO.cs" />
+    <Compile Include="DTOs\TokenDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AdminService.cs" />
+    <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\DiseaseSymptomService.cs" />
     <Compile Include="Services\DoctorService.cs" />
     <Compile Include="Services\OrderDetailService.cs" />

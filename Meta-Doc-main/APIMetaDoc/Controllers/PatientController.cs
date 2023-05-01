@@ -1,4 +1,5 @@
-﻿using BLL.DTOs;
+﻿using APIMetaDoc.Auth;
+using BLL.DTOs;
 using BLL.Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace APIMetaDoc.Controllers
 {
     public class PatientController : ApiController
     {
+        [Logged]
         [HttpGet]
         [Route("api/patients")]
         public HttpResponseMessage Patients()
@@ -27,6 +29,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpGet]
         [Route("api/patients/{id}")]
         public HttpResponseMessage Patients(int Id)
@@ -42,6 +45,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpPost]
         [Route("api/patients/create")]
         public HttpResponseMessage Create(PatientDTO data)
@@ -57,6 +61,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [Logged]
         [HttpPost]
         [Route("api/patients/update")]
         public HttpResponseMessage Update(PatientDTO data)
@@ -79,20 +84,21 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Project not found");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Patient not found");
         }
 
+        [Logged]
         [HttpPost]
-        [Route("api/patients/delete")]
-        public HttpResponseMessage Delete(PatientDTO data)
+        [Route("api/patients/delete/{id}")]
+        public HttpResponseMessage Delete(int Id)
         {
-            var exmp = PatientService.Get(data.Id);
+            var exmp = PatientService.Get(Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = PatientService.Delete(data.Id);
+                    var res = PatientService.Delete(Id);
                     return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
 
                 }
@@ -102,7 +108,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Member not found");
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Patient not found");
         }
     }
 }

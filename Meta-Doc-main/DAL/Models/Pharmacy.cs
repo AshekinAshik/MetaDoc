@@ -21,8 +21,5 @@ namespace DAL.Models
         public string Location { get; set; }
         [Required]
         public string Role { get; set; }
-        //[ForeignKey("User")]
-        //public int User_Id { get; set; }
-        //public virtual User Users { get; set; }
     }
 }

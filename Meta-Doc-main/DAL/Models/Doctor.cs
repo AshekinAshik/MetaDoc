@@ -26,8 +26,9 @@ namespace DAL.Models
         public string Chamber { get; set; }
         [Required]
         public string Role { get; set; }
-        //[ForeignKey("User")]
-        //public int User_Id { get; set; }
-        //public virtual User Users { get; set; }
+        [ForeignKey("Review")]
+        public int Review_Id { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

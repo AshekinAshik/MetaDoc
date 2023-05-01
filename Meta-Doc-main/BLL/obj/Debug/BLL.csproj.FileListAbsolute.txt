@@ -1,0 +1,2 @@
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache

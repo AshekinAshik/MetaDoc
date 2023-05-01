@@ -55,6 +55,15 @@ namespace DAL
         {
             return new ReviewRepo();
         }
+        public static IAuth<bool> AuthData()
+        {
+            return new UserRepo();
+        }
+        public static IRepo<Token, string, Token> TokenData()
+        {
+            return new TokenRepo();
+        }
+
         //public static IRepo<User, int, User> UserData()
         //{
         //    return new UserRepo();

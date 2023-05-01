@@ -10,16 +10,16 @@ using System.Web.Http;
 
 namespace APIMetaDoc.Controllers
 {
-    public class DoctorController : ApiController
+    public class AppointmentController : ApiController
     {
         [Logged]
         [HttpGet]
-        [Route("api/doctors")]
-        public HttpResponseMessage Doctors()
+        [Route("api/appoinments")]
+        public HttpResponseMessage Appoinments()
         {
             try
             {
-                var data = DoctorService.Get();
+                var data = PatientAppointmentService.Get();
 
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
@@ -31,12 +31,12 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpGet]
-        [Route("api/doctors/{id}")]
-        public HttpResponseMessage Doctors(int Id)
+        [Route("api/appoinments/{id}")]
+        public HttpResponseMessage Appointments(int Id)
         {
             try
             {
-                var data = DoctorService.Get(Id);
+                var data = PatientAppointmentService.Get(Id);
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch (Exception ex)
@@ -47,12 +47,12 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/create")]
-        public HttpResponseMessage Create(DoctorDTO data)
+        [Route("api/appoinments/create")]
+        public HttpResponseMessage Create(PatientAppoinmentDTO data)
         {
             try
             {
-                var res = DoctorService.Create(data);
+                var res = PatientAppointmentService.Create(data);
                 return Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
@@ -63,19 +63,18 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/update")]
-        public HttpResponseMessage Update(DoctorDTO data)
+        [Route("api/appoinments/update")]
+        public HttpResponseMessage Update(PatientAppoinmentDTO data)
         {
-
-            var exmp = DoctorService.Get(data.Id);
+            var exmp = PatientAppointmentService.Get(data.Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = DoctorService.Update(data);
+                    var res = PatientAppointmentService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Updated"});
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Updated" });
 
                 }
                 catch (Exception ex)
@@ -84,23 +83,22 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message = "Doctor not found"});
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Appoinment not found" });
         }
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/delete/{id}")] //{id}
+        [Route("api/appoinments/delete/{id}")] //{id}
         public HttpResponseMessage Delete(int Id) //int id
         {
-            var exmp = DoctorService.Get(Id);
+            var exmp = PatientAppointmentService.Get(Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = DoctorService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Deleted"} );
-
+                    var res = PatientAppointmentService.Delete(Id);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Deleted" });
                 }
                 catch (Exception ex)
                 {
@@ -108,8 +106,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message= "Doctor not found" });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Appoinment not found" });
         }
     }
 }
-

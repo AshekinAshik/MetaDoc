@@ -14,6 +14,7 @@ namespace DAL.Models
         public int Id { get; set; }
         [Required]
         public DateTime AppointmentDate { get; set; }
+        public string Status { get { return Status; } set { Status = "approve"; } }
 
         [ForeignKey("DiseaseSymptom")]
         public int Disease_Id { get; set; }

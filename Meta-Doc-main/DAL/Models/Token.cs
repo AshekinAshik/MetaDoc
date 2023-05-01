@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace DAL.Models
 {
-    public class Admin
+    public class Token
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Username { get; set; }
+        public string TKey { get; set; }
         [Required]
-        public string Password { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime DeletedAt { get; set; }
         [Required]
-        public string Role { get; set; }
+        [ForeignKey("User")]
+        public string User_Id { get; set; }
+        public virtual User Users { get; set; }
     }
 }

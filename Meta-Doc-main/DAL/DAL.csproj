@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Models\DiseaseSymptom.cs" />
     <Compile Include="Models\Order.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Repos\AdminRepo.cs" />
     <Compile Include="MetaDocContext.cs" />
@@ -79,6 +81,8 @@
     <Compile Include="Repos\Repo.cs" />
     <Compile Include="Repos\PatientRepo.cs" />
     <Compile Include="Repos\ReviewRepo.cs" />
+    <Compile Include="Repos\TokenRepo.cs" />
+    <Compile Include="Repos\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

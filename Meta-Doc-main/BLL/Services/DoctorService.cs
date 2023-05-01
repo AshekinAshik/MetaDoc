@@ -39,14 +39,16 @@ namespace BLL.Services
 
         public static DoctorDTO Create(DoctorDTO obj) // Need To Be Sure About This
         {
-            var data = DataAccessFactory.DoctorData().Create();
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Doctor, DoctorDTO>();
+                c.CreateMap<DoctorDTO, Doctor>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<DoctorDTO>(data);
-            return mapped;
+            var data = mapper.Map<Doctor>(obj);
+            var result = DataAccessFactory.DoctorData().Create(data);
+            var redata = mapper.Map<DoctorDTO>(result);
+            return redata;
         }
 
         public static DoctorDTO Delete(int Id)
@@ -63,14 +65,16 @@ namespace BLL.Services
 
         public static DoctorDTO Update(DoctorDTO obj)
         {
-            var data = DataAccessFactory.DoctorData().Update(obj);
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Doctor, DoctorDTO>();
+                c.CreateMap<DoctorDTO, Doctor>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<DoctorDTO>(data);
-            return mapped;
+            var data = mapper.Map<Doctor>(obj);
+            var result = DataAccessFactory.DoctorData().Update(data);
+            var redata = mapper.Map<DoctorDTO>(result);
+            return redata;
         }
     }
 }

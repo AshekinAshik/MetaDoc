@@ -10,16 +10,16 @@ using System.Web.Http;
 
 namespace APIMetaDoc.Controllers
 {
-    public class DoctorController : ApiController
+    public class ReviewController : ApiController
     {
         [Logged]
         [HttpGet]
-        [Route("api/doctors")]
-        public HttpResponseMessage Doctors()
+        [Route("api/reviews")]
+        public HttpResponseMessage Reviews()
         {
             try
             {
-                var data = DoctorService.Get();
+                var data = ReviewService.Get();
 
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
@@ -31,12 +31,12 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpGet]
-        [Route("api/doctors/{id}")]
-        public HttpResponseMessage Doctors(int Id)
+        [Route("api/reviews/{id}")]
+        public HttpResponseMessage Reviews(int Id)
         {
             try
             {
-                var data = DoctorService.Get(Id);
+                var data = ReviewService.Get(Id);
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch (Exception ex)
@@ -47,12 +47,12 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/create")]
-        public HttpResponseMessage Create(DoctorDTO data)
+        [Route("api/reviews/create")]
+        public HttpResponseMessage Create(ReviewDTO data)
         {
             try
             {
-                var res = DoctorService.Create(data);
+                var res = ReviewService.Create(data);
                 return Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
@@ -63,19 +63,19 @@ namespace APIMetaDoc.Controllers
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/update")]
-        public HttpResponseMessage Update(DoctorDTO data)
+        [Route("api/reviews/update")]
+        public HttpResponseMessage Update(ReviewDTO data)
         {
 
-            var exmp = DoctorService.Get(data.Id);
+            var exmp = ReviewService.Get(data.Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = DoctorService.Update(data);
+                    var res = ReviewService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Updated"});
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Updated" });
 
                 }
                 catch (Exception ex)
@@ -84,22 +84,22 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message = "Doctor not found"});
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Review not found" });
         }
 
         [Logged]
         [HttpPost]
-        [Route("api/doctors/delete/{id}")] //{id}
+        [Route("api/reviews/delete/{id}")] //{id}
         public HttpResponseMessage Delete(int Id) //int id
         {
-            var exmp = DoctorService.Get(Id);
+            var exmp = ReviewService.Get(Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = DoctorService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Deleted"} );
+                    var res = ReviewService.Delete(Id);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Deleted" });
 
                 }
                 catch (Exception ex)
@@ -108,8 +108,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message= "Doctor not found" });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Review not found" });
         }
     }
 }
-

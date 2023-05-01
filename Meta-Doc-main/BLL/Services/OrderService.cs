@@ -36,5 +36,45 @@ namespace BLL.Services
             var mapped = mapper.Map<OrderDTO>(data);
             return mapped;
         }
+
+        public static OrderDTO Create(OrderDTO obj) // Need To Be Sure About This
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Order, OrderDTO>();
+                c.CreateMap<OrderDTO, Order>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<Order>(obj);
+            var result = DataAccessFactory.OrderData().Create(data);
+            var redata = mapper.Map<OrderDTO>(result);
+            return redata;
+        }
+
+        public static OrderDTO Delete(int Id)
+        {
+            var data = DataAccessFactory.OrderData().Delete(Id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Order, OrderDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<OrderDTO>(data);
+            return mapped;
+        }
+
+        public static OrderDTO Update(OrderDTO obj)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Order, OrderDTO>();
+                c.CreateMap<OrderDTO, Order>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<Order>(obj);
+            var result = DataAccessFactory.OrderData().Update(data);
+            var redata = mapper.Map<OrderDTO>(result);
+            return redata;
+        }
     }
 }

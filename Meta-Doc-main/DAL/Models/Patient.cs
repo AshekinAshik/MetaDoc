@@ -29,9 +29,6 @@ namespace DAL.Models
         public string Profession { get; set; }
         [ForeignKey("Pharmacy")]
         public int Pharmacy_Id { get; set; }
-        //[ForeignKey("User")]
-        //public int User_Id { get; set; }
-        //public virtual User Users { get; set; }
         public virtual Pharmacy Pharmacies { get; set; }
 
     }

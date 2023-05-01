@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-    class ProductService
+    public class ProductService
     {
         public static List<ProductDTO> Get()
         {
@@ -35,6 +35,45 @@ namespace BLL.Services
             var mapped = mapper.Map<ProductDTO>(data);
             return mapped;
         }
+
+        public static ProductDTO Create(ProductDTO obj) // Need To Be Sure About This
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Product, ProductDTO>();
+                c.CreateMap<ProductDTO, Product>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<Product>(obj);
+            var result = DataAccessFactory.ProductData().Create(data);
+            var redata = mapper.Map<ProductDTO>(result);
+            return redata;
+        }
+
+        public static ProductDTO Delete(int Id)
+        {
+            var data = DataAccessFactory.ProductData().Delete(Id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Product, ProductDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<ProductDTO>(data);
+            return mapped;
+        }
+
+        public static ProductDTO Update(ProductDTO obj)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Product, ProductDTO>();
+                c.CreateMap<ProductDTO, Product>();
+            });
+            var mapper = new Mapper(cfg);
+            var data = mapper.Map<Product>(obj);
+            var result = DataAccessFactory.ProductData().Update(data);
+            var redata = mapper.Map<ProductDTO>(result);
+            return redata;
+        }
     }
-}
 }
