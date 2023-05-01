@@ -1,7 +1,5 @@
-﻿using DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -13,11 +11,17 @@ namespace BLL.DTOs
     {
         public int Id { get; set; }
         [Required]
-        public int OrderQuantity { get; set; } // Quantity of Selected Products
+        public int OrderQuantity { get; set; }
         [Required]
         public DateTime OrderDate { get; set; }
         [Required]
         public int TotalCost { get; set; }
-        public int Product_Id { get; set; }
+        //[ForeignKey("OrderDetail")]
+        //public int OrderDetail_Id { get; set; }
+
+        public int Pharmacy_Id { get; set; }
+
+        public int Patient_Id { get; set; }
+
     }
 }

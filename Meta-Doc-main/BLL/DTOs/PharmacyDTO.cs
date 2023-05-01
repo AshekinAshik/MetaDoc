@@ -17,7 +17,5 @@ namespace BLL.DTOs
         [Required]
         public string Password { get; set; }
         public string Location { get; set; }
-        [Required]
-        public string Role { get; set; }
     }
 }

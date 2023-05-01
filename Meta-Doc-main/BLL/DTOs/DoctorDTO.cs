@@ -22,7 +22,5 @@ namespace BLL.DTOs
         [Required]
         public string Degree { get; set; }
         public string Chamber { get; set; }
-        [Required]
-        public string Role { get; set; }
     }
 }

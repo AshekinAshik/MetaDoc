@@ -25,9 +25,11 @@ namespace DAL.Models
         //public virtual Pharmacy Pharmacy { get; set; }
         //public virtual OrderDetail OrderDetail { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<PharProduct> PharProducts { get; set; }
         public Product()
         {
             OrderDetails = new List<OrderDetail>();
+            PharProducts= new List<PharProduct>();
         }
     }
 }

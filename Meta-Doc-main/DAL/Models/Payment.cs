@@ -13,7 +13,7 @@ namespace DAL.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Status { get { return Status; } set { Status = "unpaid"; } }
+        public string Status { get; set; }
         public DateTime PaymentDate { get; set; }
         [ForeignKey("Patient")]
         public int Patient_Id { get; set; }

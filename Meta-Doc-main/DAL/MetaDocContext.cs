@@ -23,5 +23,6 @@ namespace DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Token> Tokens { get; set; }
+        public DbSet<PharProduct> PharProducts { get; set; }
     }
 }

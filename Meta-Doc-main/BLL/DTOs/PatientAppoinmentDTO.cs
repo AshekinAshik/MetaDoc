@@ -1,7 +1,5 @@
-﻿using DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -14,7 +12,12 @@ namespace BLL.DTOs
         public int Id { get; set; }
         [Required]
         public DateTime AppointmentDate { get; set; }
-        public int Disease_Id { get; set; }
+        public string Status { get { return Status; } set { Status = "approve"; } }
+
+        public int Doctor_Id { get; set; }
+        //[ForeignKey("DiseaseSymptom")]
+        //public int Disease_Id { get; set; }
+ 
         public int Patient_Id { get; set; }
     }
 }

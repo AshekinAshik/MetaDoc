@@ -66,6 +66,62 @@
     <Compile Include="Migrations\202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.designer.cs">
       <DependentUpon>202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305012134048_initDB_modifyToken.cs" />
+    <Compile Include="Migrations\202305012134048_initDB_modifyToken.designer.cs">
+      <DependentUpon>202305012134048_initDB_modifyToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012203467_seedingReview.cs" />
+    <Compile Include="Migrations\202305012203467_seedingReview.designer.cs">
+      <DependentUpon>202305012203467_seedingReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012216442_seedingDiseaseSymptom.cs" />
+    <Compile Include="Migrations\202305012216442_seedingDiseaseSymptom.designer.cs">
+      <DependentUpon>202305012216442_seedingDiseaseSymptom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012241466_seedingPatientAppointment.cs" />
+    <Compile Include="Migrations\202305012241466_seedingPatientAppointment.designer.cs">
+      <DependentUpon>202305012241466_seedingPatientAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012255491_seedingPayments.cs" />
+    <Compile Include="Migrations\202305012255491_seedingPayments.designer.cs">
+      <DependentUpon>202305012255491_seedingPayments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012302227_seedingOrders.cs" />
+    <Compile Include="Migrations\202305012302227_seedingOrders.designer.cs">
+      <DependentUpon>202305012302227_seedingOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012319106_initDB_PharProduct.cs" />
+    <Compile Include="Migrations\202305012319106_initDB_PharProduct.designer.cs">
+      <DependentUpon>202305012319106_initDB_PharProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012331152_initDB_seeding_PharProductProductOrderDetails.cs" />
+    <Compile Include="Migrations\202305012331152_initDB_seeding_PharProductProductOrderDetails.designer.cs">
+      <DependentUpon>202305012331152_initDB_seeding_PharProductProductOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012332354_seeding_PharProductProductOrderDetails.cs" />
+    <Compile Include="Migrations\202305012332354_seeding_PharProductProductOrderDetails.designer.cs">
+      <DependentUpon>202305012332354_seeding_PharProductProductOrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012333208_seeding_OrderDetails.cs" />
+    <Compile Include="Migrations\202305012333208_seeding_OrderDetails.designer.cs">
+      <DependentUpon>202305012333208_seeding_OrderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012334091_seeding_PharProducts.cs" />
+    <Compile Include="Migrations\202305012334091_seeding_PharProducts.designer.cs">
+      <DependentUpon>202305012334091_seeding_PharProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012336241_initDB_PharProduct_v2.cs" />
+    <Compile Include="Migrations\202305012336241_initDB_PharProduct_v2.designer.cs">
+      <DependentUpon>202305012336241_initDB_PharProduct_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012338004_seeding_PharProducts_v2.cs" />
+    <Compile Include="Migrations\202305012338004_seeding_PharProducts_v2.designer.cs">
+      <DependentUpon>202305012338004_seeding_PharProducts_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012340154_seeding_PharProducts_v3.cs" />
+    <Compile Include="Migrations\202305012340154_seeding_PharProducts_v3.designer.cs">
+      <DependentUpon>202305012340154_seeding_PharProducts_v3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DiseaseSymptom.cs" />
     <Compile Include="Models\Order.cs" />
@@ -73,6 +129,7 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\PatientAppointment.cs" />
     <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PharProduct.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Token.cs" />
@@ -110,6 +167,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.resx">
       <DependentUpon>202305011945159_initDB_withSeedingDoctorPatientPharmacy_V2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012134048_initDB_modifyToken.resx">
+      <DependentUpon>202305012134048_initDB_modifyToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012203467_seedingReview.resx">
+      <DependentUpon>202305012203467_seedingReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012216442_seedingDiseaseSymptom.resx">
+      <DependentUpon>202305012216442_seedingDiseaseSymptom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012241466_seedingPatientAppointment.resx">
+      <DependentUpon>202305012241466_seedingPatientAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012255491_seedingPayments.resx">
+      <DependentUpon>202305012255491_seedingPayments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012302227_seedingOrders.resx">
+      <DependentUpon>202305012302227_seedingOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012319106_initDB_PharProduct.resx">
+      <DependentUpon>202305012319106_initDB_PharProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012331152_initDB_seeding_PharProductProductOrderDetails.resx">
+      <DependentUpon>202305012331152_initDB_seeding_PharProductProductOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012332354_seeding_PharProductProductOrderDetails.resx">
+      <DependentUpon>202305012332354_seeding_PharProductProductOrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012333208_seeding_OrderDetails.resx">
+      <DependentUpon>202305012333208_seeding_OrderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012334091_seeding_PharProducts.resx">
+      <DependentUpon>202305012334091_seeding_PharProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012336241_initDB_PharProduct_v2.resx">
+      <DependentUpon>202305012336241_initDB_PharProduct_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012338004_seeding_PharProducts_v2.resx">
+      <DependentUpon>202305012338004_seeding_PharProducts_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012340154_seeding_PharProducts_v3.resx">
+      <DependentUpon>202305012340154_seeding_PharProducts_v3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

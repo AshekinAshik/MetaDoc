@@ -1,8 +1,6 @@
-﻿using DAL.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +25,5 @@ namespace BLL.DTOs
         [Required]
         public string Gender { get; set; }
         public string Profession { get; set; }
-        public int Pharmacy_Id { get; set; }
     }
 }
