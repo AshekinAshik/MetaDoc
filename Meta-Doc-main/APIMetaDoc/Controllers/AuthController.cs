@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Services.Description;
 
 namespace APIMetaDoc.Controllers
 {
+    //[EnableCors("*","*","*")]
     public class AuthController : ApiController
     {
         [HttpPost]

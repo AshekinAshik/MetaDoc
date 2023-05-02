@@ -147,6 +147,7 @@
     <Compile Include="Repos\PatientAppointmentRepo.cs" />
     <Compile Include="Repos\PaymentRepo.cs" />
     <Compile Include="Repos\PharmacyRepo.cs" />
+    <Compile Include="Repos\PharProductRepo.cs" />
     <Compile Include="Repos\ProductRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
     <Compile Include="Repos\PatientRepo.cs" />

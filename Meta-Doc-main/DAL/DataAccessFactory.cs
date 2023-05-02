@@ -55,6 +55,10 @@ namespace DAL
         {
             return new ReviewRepo();
         }
+        public static IRepo<PharProduct, int, PharProduct> PharProductData()
+        {
+            return new PharProductRepo();
+        }
         public static IAuth<bool> AuthData()
         {
             return new UserRepo();
@@ -64,9 +68,9 @@ namespace DAL
             return new TokenRepo();
         }
 
-        //public static IRepo<User, int, User> UserData()
-        //{
-        //    return new UserRepo();
-        //}
+        public static IRepo<User, string, User> UserData()
+        {
+            return new UserRepo();
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace BLL.Services
             {
                 //var existingTokent = DataAccessFactory.TokenData().Get();
                 var token = new Token();
-                token.User_Id = username;
+                token.Username = username;
                 token.CreatedAt = DateTime.Now;
                 token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
 
@@ -36,6 +36,7 @@ namespace BLL.Services
             }
             return null;
         }
+
         public static bool IsTokenValid (string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
@@ -45,11 +46,42 @@ namespace BLL.Services
             }
             return false;
         }
+
         public static bool Logout (string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             existingToken.DeletedAt = DateTime.Now;
             if (DataAccessFactory.TokenData().Update(existingToken) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsDoctor (string TKey)
+        {
+            var existingToken = DataAccessFactory.TokenData().Get(TKey);
+            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Doctor"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsPatient (string TKey)
+        {
+            var existingToken = DataAccessFactory.TokenData().Get(TKey);
+            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Patient"))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsPharmacy (string TKey)
+        {
+            var existingToken = DataAccessFactory.TokenData().Get(TKey);
+            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Pharmacy"))
             {
                 return true;
             }

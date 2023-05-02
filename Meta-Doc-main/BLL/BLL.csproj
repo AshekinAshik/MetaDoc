@@ -55,6 +55,7 @@
     <Compile Include="DTOs\PatientDTO.cs" />
     <Compile Include="DTOs\PaymentDTO.cs" />
     <Compile Include="DTOs\PharmacyDTO.cs" />
+    <Compile Include="DTOs\PharProductDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\ReviewDTO.cs" />
     <Compile Include="DTOs\TokenDTO.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Services\PatientService.cs" />
     <Compile Include="Services\PaymentService.cs" />
     <Compile Include="Services\PharmacyService.cs" />
+    <Compile Include="Services\PharProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReviewService.cs" />
   </ItemGroup>

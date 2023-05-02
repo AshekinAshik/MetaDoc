@@ -9,14 +9,10 @@ namespace BLL.DTOs
 {
     public class TokenDTO
     {
-        public int Id { get; set; }
-        [Required]
+        //public int Id { get; set; } -> Sir didn't take ID
         public string TKey { get; set; }
-        [Required]
         public DateTime CreatedAt { get; set; }
-        public DateTime DeletedAt { get; set; }
-        [Required]
-
-        public int User_Id { get; set; }
+        public DateTime? DeletedAt { get; set; }
+        public string Userrname { get; set; }
     }
 }

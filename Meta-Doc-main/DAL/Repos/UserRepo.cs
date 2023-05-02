@@ -37,9 +37,9 @@ namespace DAL.Repos
             return db.Users.ToList();
         }
 
-        public User Get(string User_Id)
+        public User Get(string Username)
         {
-            return db.Users.Find(User_Id);
+            return db.Users.Find(Username);
         }
 
         public User Update(User obj)

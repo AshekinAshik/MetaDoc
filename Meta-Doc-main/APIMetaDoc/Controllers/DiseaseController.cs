@@ -108,7 +108,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Disease not found" });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Disease  not found" });
         }
     }
 }

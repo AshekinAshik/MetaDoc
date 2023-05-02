@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class OrderDetailRepo : Repo, IRepo<OrderDetail, int, OrderDetail>
+    internal class PharProductRepo : Repo, IRepo<PharProduct, int, PharProduct>
     {
-        public OrderDetail Create(OrderDetail obj)
+        public PharProduct Create(PharProduct obj)
         {
-            db.OrderDetails.Add(obj);
+            db.PharProducts.Add(obj);
             if (db.SaveChanges() > 0)
                 return obj;
             return null;
@@ -21,21 +21,21 @@ namespace DAL.Repos
         public bool Delete(int id)
         {
             var ex = Get(id);
-            db.OrderDetails.Remove(ex);
+            db.PharProducts.Remove(ex);
             return db.SaveChanges() > 0;
         }
 
-        public List<OrderDetail> Get()
+        public List<PharProduct> Get()
         {
-            return db.OrderDetails.ToList();
+            return db.PharProducts.ToList();
         }
 
-        public OrderDetail Get(int id)
+        public PharProduct Get(int id)
         {
-            return db.OrderDetails.Find(id);
+            return db.PharProducts.Find(id);
         }
 
-        public OrderDetail Update(OrderDetail obj)
+        public PharProduct Update(PharProduct obj)
         {
             var ex = Get(obj.Id);
             db.Entry(ex).CurrentValues.SetValues(obj);
