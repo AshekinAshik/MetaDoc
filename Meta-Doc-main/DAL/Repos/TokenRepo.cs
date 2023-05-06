@@ -28,9 +28,9 @@ namespace DAL.Repos
             throw new NotImplementedException();
         }
 
-        public Token Get(string id)
+        public Token Get(string Tkey)
         {
-            return db.Tokens.FirstOrDefault(t => t.TKey.Equals(id));
+            return db.Tokens.FirstOrDefault(t => t.TKey.Equals(Tkey));
         }
 
         public Token Update(Token obj)

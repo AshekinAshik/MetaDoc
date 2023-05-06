@@ -74,6 +74,7 @@
     <Compile Include="Services\PharProductService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ReviewService.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

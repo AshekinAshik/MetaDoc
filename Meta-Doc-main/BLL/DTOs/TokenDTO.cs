@@ -13,6 +13,6 @@ namespace BLL.DTOs
         public string TKey { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
-        public string Userrname { get; set; }
+        public string Username { get; set; }
     }
 }

@@ -43,10 +43,16 @@ namespace BLL.Services
             {
                 c.CreateMap<Doctor, DoctorDTO>();
                 c.CreateMap<DoctorDTO, Doctor>();
+                c.CreateMap<Doctor, UserDTO>();
+                c.CreateMap<UserDTO, Doctor>(); //this line is redundant, though we didn't return UserDTO type
             });
             var mapper = new Mapper(cfg);
+
             var data = mapper.Map<Doctor>(obj);
             var result = DataAccessFactory.DoctorData().Create(data);
+            var data1 = mapper.Map<User>(obj);
+            data1.Role = "Doctor";
+            var result1 = DataAccessFactory.UserData().Create(data1);
             var redata = mapper.Map<DoctorDTO>(result);
             return redata;
         }

@@ -42,10 +42,15 @@ namespace BLL.Services
             {
                 c.CreateMap<Pharmacy, PharmacyDTO>();
                 c.CreateMap<PharmacyDTO, Pharmacy>();
+                c.CreateMap<Pharmacy, UserDTO>();
+                c.CreateMap<UserDTO, Pharmacy>();
             });
             var mapper = new Mapper(cfg);
             var data = mapper.Map<Pharmacy>(obj);
             var result = DataAccessFactory.PharmacyData().Create(data);
+            var data1 = mapper.Map<User>(obj);
+            data1.Role = "Pharmacy";
+            var result1 = DataAccessFactory.UserData().Create(data1);
             var redata = mapper.Map<PharmacyDTO>(result);
             return redata;
         }

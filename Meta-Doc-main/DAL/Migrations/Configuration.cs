@@ -135,14 +135,14 @@
             //    });
             //}
 
-            for (int i = 1; i <= 10; i++)
-            {
-                context.PharProducts.AddOrUpdate(new Models.PharProduct
-                {
-                    Pharmacy_Id = random.Next(2, 7),
-                    Product_Id = random.Next(1, 11),
-                });
-            }
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    context.PharProducts.AddOrUpdate(new Models.PharProduct
+            //    {
+            //        Pharmacy_Id = random.Next(2, 7),
+            //        Product_Id = random.Next(1, 11),
+            //    });
+            //}
         }
     }
 }

@@ -7,9 +7,11 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APIMetaDoc.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class PatientController : ApiController
     {
         [Logged]
@@ -88,6 +90,7 @@ namespace APIMetaDoc.Controllers
         }
 
         [Logged]
+        [PatientAccess]
         [HttpPost]
         [Route("api/patients/delete/{id}")]
         public HttpResponseMessage Delete(int Id)

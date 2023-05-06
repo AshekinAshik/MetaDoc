@@ -21,6 +21,7 @@ namespace BLL.Services
                 var token = new Token();
                 token.Username = username;
                 token.CreatedAt = DateTime.Now;
+                //token.DeletedAt = DateTime.Now.AddHour(1);
                 token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
 
                 var ret = DataAccessFactory.TokenData().Create(token);

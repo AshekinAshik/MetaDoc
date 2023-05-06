@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace APIMetaDoc.Controllers
 {
+    [EnableCors("*", "*", "*")]
     public class DoctorController : ApiController
     {
-        //[Logged]
+        [Logged]
         [HttpGet]
         [Route("api/doctors")]
         public HttpResponseMessage Doctors()
@@ -29,7 +31,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[Logged]
+        [Logged]
         [HttpGet]
         [Route("api/doctors/{id}")]
         public HttpResponseMessage Doctors(int Id)
@@ -45,7 +47,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[Logged]
+        [Logged]
         [HttpPost]
         [Route("api/doctors/create")]
         public HttpResponseMessage Create(DoctorDTO data)
@@ -61,7 +63,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[Logged]
+        [Logged]
         [HttpPost]
         [Route("api/doctors/update")]
         public HttpResponseMessage Update(DoctorDTO data)
@@ -86,8 +88,9 @@ namespace APIMetaDoc.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message = "Doctor not found"});
         }
-
-        //[Logged]
+        
+        [Logged]
+        [DoctorAccess]
         [HttpPost]
         [Route("api/doctors/delete/{id}")] //{id}
         public HttpResponseMessage Delete(int Id) //int id

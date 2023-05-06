@@ -42,10 +42,16 @@ namespace BLL.Services
             {
                 c.CreateMap<Patient, PatientDTO>();
                 c.CreateMap<PatientDTO, Patient>();
+                c.CreateMap<Patient, UserDTO>();
+                c.CreateMap<UserDTO, Patient>();
             });
             var mapper = new Mapper(cfg);
+
             var data = mapper.Map<Patient>(obj);
             var result = DataAccessFactory.PatientData().Create(data);
+            var data1 = mapper.Map<User>(obj);
+            data1.Role = "Patient";
+            var result1 = DataAccessFactory.UserData().Create(data1);
             var redata = mapper.Map<PatientDTO>(result);
             return redata;
         }
