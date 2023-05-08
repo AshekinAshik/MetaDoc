@@ -10,7 +10,7 @@ namespace DAL.Models
 {
     public class Token
     {
-        [Key]
+        [Key, Range(5000,15000)]
         public int Id { get; set; }
         [Required]
         public string TKey { get; set; }

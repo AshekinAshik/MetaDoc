@@ -9,7 +9,7 @@ namespace BLL.DTOs
 {
     public class TokenDTO
     {
-        //public int Id { get; set; } -> Sir didn't take ID
+        public int Id { get; set; }
         public string TKey { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

@@ -27,8 +27,9 @@ namespace APIMetaDoc.Controllers
                     var data = UserService.Get(res.Username);
                     if (data.Role == "Doctor")
                     {
-                        DoctorService.
-                        return Request.CreateResponse(HttpStatusCode.OK, data);
+                        //var ret = DoctorService.Get(12);
+                        //var ret = TokenService.Get(Username);
+                        return Request.CreateResponse(HttpStatusCode.OK, res);
                     }
                     else if (data.Role == "Patient")
                     {

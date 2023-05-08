@@ -67,10 +67,22 @@ namespace DAL
         {
             return new TokenRepo();
         }
-
         public static IRepo<User, string, User> UserData()
         {
             return new UserRepo();
+        }
+
+        public static IDoctorLogin<Doctor, string> MatchDoctorData()
+        {
+            return new DoctorRepo();
+        }
+        public static IPatientLogin<Patient, string> MatchPatientData()
+        {
+            return new PatientRepo();
+        }
+        public static IPharmacyLogin<Pharmacy, string> MatchPharmacyData()
+        {
+            return new PharmacyRepo();
         }
     }
 }

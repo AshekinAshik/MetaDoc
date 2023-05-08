@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class PharmacyRepo : Repo, IRepo<Pharmacy, int, Pharmacy>
+    internal class PharmacyRepo : Repo, IRepo<Pharmacy, int, Pharmacy>, IPharmacyLogin<Pharmacy, string>
     {
         public Pharmacy Create(Pharmacy obj)
         {
@@ -32,6 +32,11 @@ namespace DAL.Repos
         public Pharmacy Get(int id)
         {
             return db.Pharmacies.Find(id);
+        }
+
+        public Pharmacy Match(string username)
+        {
+            return db.Pharmacies.FirstOrDefault(x => x.Username == username);
         }
 
         public Pharmacy Update(Pharmacy obj)

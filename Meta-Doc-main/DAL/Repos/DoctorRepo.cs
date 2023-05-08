@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class DoctorRepo : Repo, IRepo<Doctor, int, Doctor>
+    internal class DoctorRepo : Repo, IRepo<Doctor, int, Doctor>, IDoctorLogin<Doctor, string>
     {
         public Doctor Create(Doctor obj)
         {
@@ -35,6 +35,11 @@ namespace DAL.Repos
         public Doctor Get(int id)
         {
             return db.Doctors.Find(id);
+        }
+
+        public Doctor Match(string username)
+        {
+            return db.Doctors.FirstOrDefault(x => x.Username == username);
         }
 
         public Doctor Update(Doctor obj)

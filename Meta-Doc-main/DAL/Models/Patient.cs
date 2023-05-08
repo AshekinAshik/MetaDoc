@@ -10,7 +10,7 @@ namespace DAL.Models
 {
     public class Patient
     {
-        [Key]
+        [Key, Range(3000, 3999)]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }

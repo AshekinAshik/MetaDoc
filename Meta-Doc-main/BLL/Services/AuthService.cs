@@ -17,12 +17,12 @@ namespace BLL.Services
             var result = DataAccessFactory.AuthData().Authenticate(username, password);
             if (result)
             {
-                //var existingTokent = DataAccessFactory.TokenData().Get();
-                var token = new Token();
+                //var existingTokent = DataAccessFactory.TokenData().Get();
+                var token = new Token();
                 token.Username = username;
                 token.CreatedAt = DateTime.Now;
-                //token.DeletedAt = DateTime.Now.AddHour(1);
-                token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
+                //token.DeletedAt = DateTime.Now.AddHour(1);
+                token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
 
                 var ret = DataAccessFactory.TokenData().Create(token);
                 if (ret != null)
@@ -34,11 +34,39 @@ namespace BLL.Services
                     var mapper = new Mapper(cfg);
                     return mapper.Map<TokenDTO>(ret);
                 }
+                if (IsDoctor(token.TKey))
+                {
+                    var result1 = DataAccessFactory.MatchDoctorData().Match(username);
+                    token.Id = result1.Id;
+                }
+                if (IsPatient(token.TKey))
+                {
+                    var result1 = DataAccessFactory.MatchPatientData().Match(username);
+                    token.Id = result1.Id;
+                }
+                if (IsPharmacy(token.TKey))
+                {
+                    var result1 = DataAccessFactory.MatchPharmacyData().Match(username);
+                    token.Id = result1.Id;
+                }
+                var update = DataAccessFactory.TokenData().Update(token);
+                
+                if (update != null)
+                {
+                    var cfg = new MapperConfiguration(c =>
+                    {
+                        c.CreateMap<Token, TokenDTO>();
+                        c.CreateMap<TokenDTO, Token>();
+                    });
+                    var mapper = new Mapper(cfg);
+                    var data = mapper.Map<Token>(update);
+                    return mapper.Map<TokenDTO>(data);
+                }
             }
             return null;
         }
 
-        public static bool IsTokenValid (string TKey)
+        public static bool IsTokenValid(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             if (existingToken != null && existingToken.DeletedAt == null)
@@ -48,7 +76,7 @@ namespace BLL.Services
             return false;
         }
 
-        public static bool Logout (string TKey)
+        public static bool Logout(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             existingToken.DeletedAt = DateTime.Now;
@@ -59,7 +87,7 @@ namespace BLL.Services
             return false;
         }
 
-        public static bool IsDoctor (string TKey)
+        public static bool IsDoctor(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Doctor"))
@@ -69,7 +97,7 @@ namespace BLL.Services
             return false;
         }
 
-        public static bool IsPatient (string TKey)
+        public static bool IsPatient(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Patient"))
@@ -79,7 +107,7 @@ namespace BLL.Services
             return false;
         }
 
-        public static bool IsPharmacy (string TKey)
+        public static bool IsPharmacy(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Pharmacy"))

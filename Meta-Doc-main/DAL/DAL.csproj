@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
+    <Compile Include="Interfaces\IDoctorLogin.cs" />
+    <Compile Include="Interfaces\IPatientLogin.cs" />
+    <Compile Include="Interfaces\IPharmacyLogin.cs" />
     <Compile Include="Interfaces\IRepo.cs" />
     <Compile Include="Migrations\202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.cs" />
     <Compile Include="Migrations\202305011916322_initDB_withoutSeedingDoctorPatientPharmacy.designer.cs">

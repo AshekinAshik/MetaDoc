@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    class PatientRepo : Repo, IRepo<Patient, int, Patient>
+    class PatientRepo : Repo, IRepo<Patient, int, Patient>, IPatientLogin<Patient, string>
     {
         public Patient Create(Patient obj)
         {
@@ -32,6 +32,11 @@ namespace DAL.Repos
         public Patient Get(int id)
         {
             return db.Patients.Find(id);
+        }
+
+        public Patient Match(string username)
+        {
+            return db.Patients.FirstOrDefault(x => x.Username == username);
         }
 
         public Patient Update(Patient obj)
