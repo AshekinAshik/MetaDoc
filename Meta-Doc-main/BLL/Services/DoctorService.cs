@@ -41,21 +41,23 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Doctor, DoctorDTO>();
+                //c.CreateMap<Doctor, DoctorDTO>();
+                //c.CreateMap<Doctor, UserDTO>();
+
                 c.CreateMap<DoctorDTO, Doctor>();
-                c.CreateMap<Doctor, UserDTO>();
-                c.CreateMap<UserDTO, Doctor>(); //this line is redundant, though we didn't return UserDTO type
+                c.CreateMap<DoctorDTO, User>();
             });
             var mapper = new Mapper(cfg);
 
-            var data = mapper.Map<Doctor>(obj);
-            var result = DataAccessFactory.DoctorData().Create(data);
-            var data1 = mapper.Map<User>(obj);
-            data1.Role = "Doctor";
-            var result1 = DataAccessFactory.UserData().Create(data1);
-            var redata = mapper.Map<DoctorDTO>(result);
-            //var redata1 = mapper.Map<UserDTO>(result1);
-            return redata;
+            var data_doctor = mapper.Map<Doctor>(obj);
+            var result_doctor = DataAccessFactory.DoctorData().Create(data_doctor);
+            
+            var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Doctor";
+            var result_user = DataAccessFactory.UserData().Create(data_user);
+            //var redata = mapper.Map<DoctorDTO>(result_doctor);
+            //var redata1 = mapper.Map<UserDTO>(result_user);
+            return obj;
         }
 
         public static DoctorDTO Delete(int Id)

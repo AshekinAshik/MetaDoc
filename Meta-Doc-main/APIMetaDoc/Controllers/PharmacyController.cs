@@ -14,6 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class PharmacyController : ApiController
     {
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/pharmacies")]
@@ -31,6 +32,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/pharmacies/{id}")]
@@ -63,6 +65,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpPost]
         [Route("api/pharmacies/update")]

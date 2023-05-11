@@ -13,16 +13,16 @@ namespace BLL.Services
 {
     public class AuthService
     {
+        internal static string globalUsername;
         public static TokenDTO Authenticate(string username, string password)
         {
+            globalUsername= username;
             var result = DataAccessFactory.AuthData().Authenticate(username, password);
             if (result)
             {
-                //var existingTokent = DataAccessFactory.TokenData().Get();
                 var token = new Token();
                 token.Username = username;
                 token.CreatedAt = DateTime.Now;
-                //token.DeletedAt = DateTime.Now.AddHour(1);
                 token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
 
                 var ret = DataAccessFactory.TokenData().Create(token);
@@ -33,39 +33,28 @@ namespace BLL.Services
                         c.CreateMap<Token, TokenDTO>();
                     });
                     var mapper = new Mapper(cfg);
-                    return mapper.Map<TokenDTO>(ret);
-                }
-                int count = 0;
-                Console.WriteLine(count);
-                if (IsDoctor(token.TKey))
-                {
-                    var result1 = DataAccessFactory.MatchDoctorData().Match(username);
-                    token.Id = result1.Id;
-                    count = 1;
-                    Console.WriteLine(count);
-                }
-                if (IsPatient(token.TKey))
-                {
-                    var result1 = DataAccessFactory.MatchPatientData().Match(username);
-                    token.Id = result1.Id;
-                }
-                if (IsPharmacy(token.TKey))
-                {
-                    var result1 = DataAccessFactory.MatchPharmacyData().Match(username);
-                    token.Id = result1.Id;
-                }
-                var update = DataAccessFactory.TokenData().Update(token);
-                
-                if (update != null)
-                {
-                    var cfg = new MapperConfiguration(c =>
+
+                    if (IsDoctor(token.TKey) && (token.Username == DataAccessFactory.MatchDoctorData().Match(username).Username))
                     {
-                        c.CreateMap<Token, TokenDTO>();
-                        c.CreateMap<TokenDTO, Token>();
-                    });
-                    var mapper = new Mapper(cfg);
-                    var data = mapper.Map<Token>(update);
-                    return mapper.Map<TokenDTO>(data);
+                        return mapper.Map<TokenDTO>(ret);
+                    }
+
+                    else if (IsPatient(token.TKey))
+                    {
+                        var result1 = DataAccessFactory.MatchPatientData().Match(username);
+                        if (token.Username == result1.Username)
+                        {
+                            return mapper.Map<TokenDTO>(ret);
+                        }
+                    }
+                    else if (IsPharmacy(token.TKey))
+                    {
+                        var result1 = DataAccessFactory.MatchPharmacyData().Match(username);
+                        if (token.Username == result1.Username)
+                        {
+                            return mapper.Map<TokenDTO>(ret);
+                        }
+                    }
                 }
             }
             return null;
@@ -95,7 +84,8 @@ namespace BLL.Services
         public static bool IsDoctor(string TKey)
         {
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
-            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Doctor"))
+            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Doctor") 
+                && existingToken.Username == DataAccessFactory.UserData().Get(globalUsername).Username)
             {
                 return true;
             }

@@ -14,6 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class DoctorController : ApiController
     {
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/doctors")]
@@ -30,10 +31,11 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
             }
         }
-
+        
         [Logged]
         [HttpGet]
         [Route("api/doctors/{id}")]
+        [DoctorAccess]
         public HttpResponseMessage Doctors(int Id)
         {
             try
@@ -47,7 +49,6 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [Logged]
         [HttpPost]
         [Route("api/doctors/create")]
         public HttpResponseMessage Create(DoctorDTO data)
@@ -63,6 +64,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/doctors/update")]
@@ -88,7 +90,8 @@ namespace APIMetaDoc.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message = "Doctor not found"});
         }
-        
+
+        [DoctorAccess]
         [Logged]
         [DoctorAccess]
         [HttpPost]

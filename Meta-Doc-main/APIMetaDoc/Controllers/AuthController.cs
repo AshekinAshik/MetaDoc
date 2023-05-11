@@ -19,38 +19,6 @@ namespace APIMetaDoc.Controllers
         [Route("api/login")]
         public HttpResponseMessage Login (LoginModel login)
         {
-            //try
-            //{
-            //    var res = AuthService.Authenticate(login.Username, login.Password);
-            //    if (res != null)
-            //    {
-            //        var data = UserService.Get(res.Username);
-            //        if (data.Role == "Doctor")
-            //        {
-            //            //var ret = DoctorService.Get(12);
-            //            //var ret = TokenService.Get(Username);
-            //            return Request.CreateResponse(HttpStatusCode.OK, res);
-            //        }
-            //        else if (data.Role == "Patient")
-            //        {
-            //            return Request.CreateResponse(HttpStatusCode.OK, res);
-            //        }
-            //        else if (data.Role == "Pharmacy")
-            //        {
-            //            return Request.CreateResponse(HttpStatusCode.OK, res);
-            //        }
-            //        else
-            //        {
-            //            return Request.CreateResponse(HttpStatusCode.NotFound, new { Message = "User Not Found!" });
-            //        }
-            //    } else 
-            //            return Request.CreateResponse(HttpStatusCode.NotFound, new { Message = "User Not Found!" });
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
-            //}
-
             try
             {
                 var res = AuthService.Authenticate(login.Username, login.Password);
