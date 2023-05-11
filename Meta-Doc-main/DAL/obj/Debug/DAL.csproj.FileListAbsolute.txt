@@ -28,3 +28,7 @@ C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.initDB_PharProduct_v2.resources
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seeding_PharProducts_v2.resources
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seeding_PharProducts_v3.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.updatingChanges.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.updatingAnnotation.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seedingDoctorwith1memeber.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seedingagaindoctor1member.resources

@@ -76,3 +76,6 @@ C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\bin\Au
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\obj\Debug\APIMetaDoc.csproj.CopyComplete
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\obj\Debug\APIMetaDoc.dll
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\obj\Debug\APIMetaDoc.pdb
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\bin\System.Web.Cors.dll
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\bin\System.Web.Http.Cors.dll
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\APIMetaDoc\bin\System.Web.Http.Cors.xml

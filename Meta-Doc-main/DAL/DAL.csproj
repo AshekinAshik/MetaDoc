@@ -125,6 +125,22 @@
     <Compile Include="Migrations\202305012340154_seeding_PharProducts_v3.designer.cs">
       <DependentUpon>202305012340154_seeding_PharProducts_v3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305091922100_updatingChanges.cs" />
+    <Compile Include="Migrations\202305091922100_updatingChanges.designer.cs">
+      <DependentUpon>202305091922100_updatingChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305092005430_updatingAnnotation.cs" />
+    <Compile Include="Migrations\202305092005430_updatingAnnotation.designer.cs">
+      <DependentUpon>202305092005430_updatingAnnotation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305100620445_seedingDoctorwith1memeber.cs" />
+    <Compile Include="Migrations\202305100620445_seedingDoctorwith1memeber.designer.cs">
+      <DependentUpon>202305100620445_seedingDoctorwith1memeber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305100628378_seedingagaindoctor1member.cs" />
+    <Compile Include="Migrations\202305100628378_seedingagaindoctor1member.designer.cs">
+      <DependentUpon>202305100628378_seedingagaindoctor1member.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DiseaseSymptom.cs" />
     <Compile Include="Models\Order.cs" />
@@ -213,6 +229,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305012340154_seeding_PharProducts_v3.resx">
       <DependentUpon>202305012340154_seeding_PharProducts_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305091922100_updatingChanges.resx">
+      <DependentUpon>202305091922100_updatingChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305092005430_updatingAnnotation.resx">
+      <DependentUpon>202305092005430_updatingAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305100620445_seedingDoctorwith1memeber.resx">
+      <DependentUpon>202305100620445_seedingDoctorwith1memeber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305100628378_seedingagaindoctor1member.resx">
+      <DependentUpon>202305100628378_seedingagaindoctor1member.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

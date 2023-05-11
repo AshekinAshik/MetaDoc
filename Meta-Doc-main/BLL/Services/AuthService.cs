@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace BLL.Services
 {
@@ -34,10 +35,14 @@ namespace BLL.Services
                     var mapper = new Mapper(cfg);
                     return mapper.Map<TokenDTO>(ret);
                 }
+                int count = 0;
+                Console.WriteLine(count);
                 if (IsDoctor(token.TKey))
                 {
                     var result1 = DataAccessFactory.MatchDoctorData().Match(username);
                     token.Id = result1.Id;
+                    count = 1;
+                    Console.WriteLine(count);
                 }
                 if (IsPatient(token.TKey))
                 {

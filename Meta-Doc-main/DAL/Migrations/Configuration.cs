@@ -21,11 +21,11 @@
 
             Random random = new Random();
 
-            //for (int i = 1; i <= 10; i++)
+            //for (int i = 1; i <= 1; i++)
             //{
             //    context.Doctors.AddOrUpdate(new Models.Doctor
             //    {
-            //        Name = Guid.NewGuid().ToString().Substring(0, 20),
+            //        Name = "DR." + Guid.NewGuid().ToString().Substring(0, 15),
             //        Email = Guid.NewGuid().ToString().Substring(0, 6) + "@gmail.com",
             //        Contact = "01" + random.Next(111111111, 999999999),
             //        Username = Guid.NewGuid().ToString().Substring(0, 8),

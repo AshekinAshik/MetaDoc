@@ -54,6 +54,7 @@ namespace BLL.Services
             data1.Role = "Doctor";
             var result1 = DataAccessFactory.UserData().Create(data1);
             var redata = mapper.Map<DoctorDTO>(result);
+            //var redata1 = mapper.Map<UserDTO>(result1);
             return redata;
         }
 
