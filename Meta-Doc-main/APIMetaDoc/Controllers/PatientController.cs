@@ -49,7 +49,6 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [Logged]
         [HttpPost]
         [Route("api/patients/create")]
         public HttpResponseMessage Create(PatientDTO data)
@@ -65,35 +64,24 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
-        [Logged]
+        //[PatientAccess]
+        //[Logged]
         [HttpPost]
         [Route("api/patients/update")]
         public HttpResponseMessage Update(PatientDTO data)
-        {
-
-            var exmp = PatientService.Get(data.Id);
-
-            if (exmp != null)
+        {   try
             {
-                try
-                {
-                    var res = PatientService.Update(data);
-
-                    return Request.CreateResponse(HttpStatusCode.OK, "Updated");
-
-                }
-                catch (Exception ex)
-                {
-                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
-                }
+                var res = PatientService.Update(data);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
             }
-            else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Patient not found");
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
         }
 
-        [Logged]
-        [PatientAccess]
+        //[Logged]
+        //[PatientAccess]
         [HttpPost]
         [Route("api/patients/delete/{id}")]
         public HttpResponseMessage Delete(int Id)

@@ -49,7 +49,6 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [Logged]
         [HttpPost]
         [Route("api/pharmacies/create")]
         public HttpResponseMessage Create(PharmacyDTO data)

@@ -60,16 +60,21 @@ namespace BLL.Services
             return obj;
         }
 
-        public static DoctorDTO Delete(int Id)
+        public static bool Delete(int Id)
         {
-            var data = DataAccessFactory.DoctorData().Delete(Id);
+            var doctor = DataAccessFactory.DoctorData().Get(Id);
+
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Doctor, DoctorDTO>();
+                c.CreateMap<Doctor,UserDTO>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<DoctorDTO>(data);
-            return mapped;
+
+            var result_doctor = DataAccessFactory.DoctorData().Delete(Id);
+            var reult_user = DataAccessFactory.UserData().Delete(doctor.Username);
+
+            return result_doctor;
         }
 
         public static DoctorDTO Update(DoctorDTO obj)

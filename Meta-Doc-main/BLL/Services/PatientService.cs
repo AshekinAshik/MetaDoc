@@ -40,46 +40,70 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Patient, PatientDTO>();
+                //c.CreateMap<Patient, UserDTO>();
+                //c.CreateMap<Patient, PatientDTO>();
+                
                 c.CreateMap<PatientDTO, Patient>();
-                c.CreateMap<Patient, UserDTO>();
-                c.CreateMap<UserDTO, Patient>();
+                c.CreateMap<PatientDTO, User>();
             });
             var mapper = new Mapper(cfg);
 
-            var data = mapper.Map<Patient>(obj);
-            var result = DataAccessFactory.PatientData().Create(data);
-            var data1 = mapper.Map<User>(obj);
-            data1.Role = "Patient";
-            var result1 = DataAccessFactory.UserData().Create(data1);
-            var redata = mapper.Map<PatientDTO>(result);
-            return redata;
+            var data_patient = mapper.Map<Patient>(obj);
+            var result_patient = DataAccessFactory.PatientData().Create(data_patient);
+
+            var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Patient";
+            var result_user = DataAccessFactory.UserData().Create(data_user);
+
+            //var redata = mapper.Map<PatientDTO>(result);
+            return obj;
         }
 
-        public static PatientDTO Delete(int Id)
+        //public static PatientDTO Delete(int Id)
+        //{
+        //    var data = DataAccessFactory.PatientData().Delete(Id);
+        //    var cfg = new MapperConfiguration(c =>
+        //    {
+        //        c.CreateMap<Patient, PatientDTO>();
+        //    });
+        //    var mapper = new Mapper(cfg);
+        //    var mapped = mapper.Map<PatientDTO>(data);
+        //    return mapped;
+        //}
+
+        public static bool Delete(int Id)
         {
-            var data = DataAccessFactory.PatientData().Delete(Id);
+            var patient = DataAccessFactory.PatientData().Get(Id);
+
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Patient, PatientDTO>();
+                c.CreateMap<Patient, UserDTO>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<PatientDTO>(data);
-            return mapped;
+
+            var result_patient = DataAccessFactory.PatientData().Delete(Id);
+            var reult_user = DataAccessFactory.UserData().Delete(patient.Username);
+
+            return result_patient;
         }
 
         public static PatientDTO Update(PatientDTO obj)
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Patient, PatientDTO>();
                 c.CreateMap<PatientDTO, Patient>();
+                c.CreateMap<PatientDTO, User>();
             });
             var mapper = new Mapper(cfg);
-            var data = mapper.Map<Patient>(obj);
-            var result = DataAccessFactory.PatientData().Update(data);
-            var redata = mapper.Map<PatientDTO>(result);
-            return redata;
+
+            var data_patient = mapper.Map<Patient>(obj);
+            var result_patient = DataAccessFactory.PatientData().Update(data_patient);
+
+            var data_user = mapper.Map<User>(obj);
+            var result_user = DataAccessFactory.UserData().Update(data_user);
+
+            return obj;
         }
     }
 }

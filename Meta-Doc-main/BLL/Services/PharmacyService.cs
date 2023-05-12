@@ -40,31 +40,39 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Pharmacy, PharmacyDTO>();
+                //c.CreateMap<Pharmacy, PharmacyDTO>();
+                //c.CreateMap<Pharmacy, UserDTO>();
+                
                 c.CreateMap<PharmacyDTO, Pharmacy>();
-                c.CreateMap<Pharmacy, UserDTO>();
-                c.CreateMap<UserDTO, Pharmacy>();
+                c.CreateMap<PharmacyDTO, User>();
             });
             var mapper = new Mapper(cfg);
-            var data = mapper.Map<Pharmacy>(obj);
-            var result = DataAccessFactory.PharmacyData().Create(data);
-            var data1 = mapper.Map<User>(obj);
-            data1.Role = "Pharmacy";
-            var result1 = DataAccessFactory.UserData().Create(data1);
-            var redata = mapper.Map<PharmacyDTO>(result);
-            return redata;
+
+            var data_pharmacy = mapper.Map<Pharmacy>(obj);
+            var result_pharmacy = DataAccessFactory.PharmacyData().Create(data_pharmacy);
+
+            var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Pharmacy";
+            var result_user = DataAccessFactory.UserData().Create(data_user);
+            //var redata = mapper.Map<PharmacyDTO>(result_pharmacy);
+            return obj;
         }
 
-        public static PharmacyDTO Delete(int Id)
+        public static bool Delete(int Id)
         {
-            var data = DataAccessFactory.PharmacyData().Delete(Id);
+            var pharmacy = DataAccessFactory.PharmacyData().Get(Id);
+            
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Pharmacy, PharmacyDTO>();
+                c.CreateMap<Pharmacy, UserDTO>();
             });
             var mapper = new Mapper(cfg);
-            var mapped = mapper.Map<PharmacyDTO>(data);
-            return mapped;
+
+            var result_pharmacy = DataAccessFactory.PharmacyData().Delete(Id);
+            var reult_user = DataAccessFactory.UserData().Delete(pharmacy.Username);
+
+            return result_pharmacy;
         }
 
         public static PharmacyDTO Update(PharmacyDTO obj)
