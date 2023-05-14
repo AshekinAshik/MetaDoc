@@ -26,7 +26,7 @@ namespace BLL.Services
 
         public static PharmacyDTO Get(int Id)
         {
-            var data = DataAccessFactory.PaymentData().Get(Id);
+            var data = DataAccessFactory.PharmacyData().Get(Id);
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<Pharmacy, PharmacyDTO>();
@@ -36,13 +36,10 @@ namespace BLL.Services
             return mapped;
         }
 
-        public static PharmacyDTO Create(PharmacyDTO obj) // Need To Be Sure About This
+        public static PharmacyDTO Create(PharmacyDTO obj)
         {
             var cfg = new MapperConfiguration(c =>
             {
-                //c.CreateMap<Pharmacy, PharmacyDTO>();
-                //c.CreateMap<Pharmacy, UserDTO>();
-                
                 c.CreateMap<PharmacyDTO, Pharmacy>();
                 c.CreateMap<PharmacyDTO, User>();
             });
@@ -54,7 +51,7 @@ namespace BLL.Services
             var data_user = mapper.Map<User>(obj);
             data_user.Role = "Pharmacy";
             var result_user = DataAccessFactory.UserData().Create(data_user);
-            //var redata = mapper.Map<PharmacyDTO>(result_pharmacy);
+            
             return obj;
         }
 
@@ -79,14 +76,19 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Pharmacy, PharmacyDTO>();
                 c.CreateMap<PharmacyDTO, Pharmacy>();
+                c.CreateMap<PharmacyDTO, User>();
             });
             var mapper = new Mapper(cfg);
-            var data = mapper.Map<Pharmacy>(obj);
-            var result = DataAccessFactory.PharmacyData().Update(data);
-            var redata = mapper.Map<PharmacyDTO>(result);
-            return redata;
+
+            var data_pharmacy = mapper.Map<Pharmacy>(obj);
+            var result_pharmacy = DataAccessFactory.PharmacyData().Update(data_pharmacy);
+
+            var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Pharmacy";
+            var result_user = DataAccessFactory.UserData().Update(data_user);
+
+            return obj;
         }
     }
 }

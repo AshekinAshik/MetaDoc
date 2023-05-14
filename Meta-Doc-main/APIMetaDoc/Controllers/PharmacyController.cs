@@ -14,7 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class PharmacyController : ApiController
     {
-        [PharmacyAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/pharmacies")]
@@ -32,8 +32,9 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PharmacyAccess]
-        [Logged]
+        //[PharmacyAccess]
+        //[PatientAccess]
+        //[Logged]
         [HttpGet]
         [Route("api/pharmacies/{id}")]
         public HttpResponseMessage Pharmacies(int Id)
@@ -41,7 +42,11 @@ namespace APIMetaDoc.Controllers
             try
             {
                 var data = PharmacyService.Get(Id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
             }
             catch (Exception ex)
             {
@@ -64,9 +69,9 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PharmacyAccess]
-        [Logged]
-        [HttpPost]
+        //[PharmacyAccess]
+        //[Logged]
+        //[HttpPost]
         [Route("api/pharmacies/update")]
         public HttpResponseMessage Update(PharmacyDTO data)
         {
@@ -79,7 +84,7 @@ namespace APIMetaDoc.Controllers
                 {
                     var res = PharmacyService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, "Updated");
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Pharmacy Updated" });
 
                 }
                 catch (Exception ex)
@@ -104,7 +109,7 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = PharmacyService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Pharmacy Deleted" });
 
                 }
                 catch (Exception ex)

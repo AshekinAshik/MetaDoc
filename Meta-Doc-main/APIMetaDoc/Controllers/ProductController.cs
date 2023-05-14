@@ -14,6 +14,8 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class ProductController : ApiController
     {
+        [PharmacyAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/products")]
@@ -31,6 +33,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/products/{id}")]
@@ -47,6 +50,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpPost]
         [Route("api/products/create")]
@@ -63,6 +67,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpPost]
         [Route("api/products/update")]
@@ -89,10 +94,11 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Product not found" });
         }
 
+        [PharmacyAccess]
         [Logged]
         [HttpPost]
-        [Route("api/products/delete/{id}")] //{id}
-        public HttpResponseMessage Delete(int Id) //int id
+        [Route("api/products/delete/{id}")] 
+        public HttpResponseMessage Delete(int Id) 
         {
             var exmp = ProductService.Get(Id);
 

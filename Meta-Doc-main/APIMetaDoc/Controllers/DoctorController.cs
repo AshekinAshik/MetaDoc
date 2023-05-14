@@ -14,7 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class DoctorController : ApiController
     {
-        [DoctorAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/doctors")]
@@ -31,17 +31,31 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
             }
         }
-        
+
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/doctors/{id}")]
-        [DoctorAccess]
         public HttpResponseMessage Doctors(int Id)
         {
+            //try
+            //{
+            //    var data = DoctorService.Get(Id);
+            //    return Request.CreateResponse(HttpStatusCode.OK, data);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            //}
+
             try
             {
                 var data = DoctorService.Get(Id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
             }
             catch (Exception ex)
             {
@@ -70,7 +84,6 @@ namespace APIMetaDoc.Controllers
         [Route("api/doctors/update")]
         public HttpResponseMessage Update(DoctorDTO data)
         {
-
             var exmp = DoctorService.Get(data.Id);
 
             if (exmp != null)
@@ -79,7 +92,7 @@ namespace APIMetaDoc.Controllers
                 {
                     var res = DoctorService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Updated"});
+                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Doctor Updated"});
 
                 }
                 catch (Exception ex)
@@ -91,12 +104,11 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message = "Doctor not found"});
         }
 
-        [DoctorAccess]
         [Logged]
         [DoctorAccess]
         [HttpPost]
-        [Route("api/doctors/delete/{id}")] //{id}
-        public HttpResponseMessage Delete(int Id) //int id
+        [Route("api/doctors/delete/{id}")]
+        public HttpResponseMessage Delete(int Id)
         {
             var exmp = DoctorService.Get(Id);
 
@@ -105,7 +117,7 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = DoctorService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Deleted"} );
+                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Doctor Deleted"} );
 
                 }
                 catch (Exception ex)

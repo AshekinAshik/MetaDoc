@@ -14,6 +14,8 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class DiseaseController : ApiController
     {
+        [DoctorAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/diseases")]
@@ -31,6 +33,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [DoctorAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/diseases/{id}")]
@@ -47,6 +51,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/diseases/create")]
@@ -63,6 +68,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/diseases/update")]
@@ -89,6 +95,7 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Symptom not found" });
         }
 
+        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/diseases/delete/{id}")] //{id}

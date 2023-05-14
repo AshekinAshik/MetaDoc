@@ -14,6 +14,8 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class ReviewController : ApiController
     {
+        [PatientAccess]
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/reviews")]
@@ -31,6 +33,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/reviews/{id}")]
@@ -47,6 +51,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
         [Logged]
         [HttpPost]
         [Route("api/reviews/create")]
@@ -89,6 +94,7 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Review not found" });
         }
 
+        [PatientAccess]
         [Logged]
         [HttpPost]
         [Route("api/reviews/delete/{id}")] //{id}

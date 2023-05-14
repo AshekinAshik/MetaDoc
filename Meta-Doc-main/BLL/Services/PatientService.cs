@@ -36,13 +36,10 @@ namespace BLL.Services
             return mapped;
         }
 
-        public static PatientDTO Create(PatientDTO obj) // Need To Be Sure About This
+        public static PatientDTO Create(PatientDTO obj)
         {
             var cfg = new MapperConfiguration(c =>
             {
-                //c.CreateMap<Patient, UserDTO>();
-                //c.CreateMap<Patient, PatientDTO>();
-                
                 c.CreateMap<PatientDTO, Patient>();
                 c.CreateMap<PatientDTO, User>();
             });
@@ -55,7 +52,6 @@ namespace BLL.Services
             data_user.Role = "Patient";
             var result_user = DataAccessFactory.UserData().Create(data_user);
 
-            //var redata = mapper.Map<PatientDTO>(result);
             return obj;
         }
 
@@ -101,6 +97,7 @@ namespace BLL.Services
             var result_patient = DataAccessFactory.PatientData().Update(data_patient);
 
             var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Patient";
             var result_user = DataAccessFactory.UserData().Update(data_user);
 
             return obj;

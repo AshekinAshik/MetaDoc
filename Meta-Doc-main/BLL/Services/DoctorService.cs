@@ -41,9 +41,6 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                //c.CreateMap<Doctor, DoctorDTO>();
-                //c.CreateMap<Doctor, UserDTO>();
-
                 c.CreateMap<DoctorDTO, Doctor>();
                 c.CreateMap<DoctorDTO, User>();
             });
@@ -81,14 +78,18 @@ namespace BLL.Services
         {
             var cfg = new MapperConfiguration(c =>
             {
-                c.CreateMap<Doctor, DoctorDTO>();
                 c.CreateMap<DoctorDTO, Doctor>();
+                c.CreateMap<DoctorDTO, User>();
             });
             var mapper = new Mapper(cfg);
-            var data = mapper.Map<Doctor>(obj);
-            var result = DataAccessFactory.DoctorData().Update(data);
-            var redata = mapper.Map<DoctorDTO>(result);
-            return redata;
+
+            var data_doctor = mapper.Map<Doctor>(obj);
+            var result_doctor = DataAccessFactory.DoctorData().Update(data_doctor);
+
+            var data_user = mapper.Map<User>(obj);
+            data_user.Role = "Doctor";
+            var result_user = DataAccessFactory.UserData().Update(data_user);
+            return obj;
         }
     }
 }

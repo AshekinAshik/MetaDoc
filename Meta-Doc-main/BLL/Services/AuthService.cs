@@ -16,7 +16,7 @@ namespace BLL.Services
         internal static string globalUsername;
         public static TokenDTO Authenticate(string username, string password)
         {
-            globalUsername= username;
+            
             var result = DataAccessFactory.AuthData().Authenticate(username, password);
             if (result)
             {
@@ -24,6 +24,7 @@ namespace BLL.Services
                 token.Username = username;
                 token.CreatedAt = DateTime.Now;
                 token.TKey = Guid.NewGuid().ToString().Substring(1, 10);
+                globalUsername= token.Username;
 
                 var ret = DataAccessFactory.TokenData().Create(token);
                 if (ret != null)
@@ -58,6 +59,11 @@ namespace BLL.Services
                 }
             }
             return null;
+        }
+
+        public static string Check()
+        {
+            return globalUsername;
         }
 
         public static bool IsTokenValid(string TKey)

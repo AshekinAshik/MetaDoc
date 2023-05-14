@@ -14,6 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class OrderController : ApiController
     {
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/orders")]
@@ -31,6 +32,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PharmacyAccess]
+        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/orders/{id}")]
@@ -47,6 +50,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
         [Logged]
         [HttpPost]
         [Route("api/orders/create")]
@@ -63,6 +67,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
         [Logged]
         [HttpPost]
         [Route("api/orders/update")]
@@ -89,6 +94,8 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Order not found" });
         }
 
+        [PatientAccess]
+        [PharmacyAccess]
         [Logged]
         [HttpPost]
         [Route("api/orders/delete/{id}")] //{id}

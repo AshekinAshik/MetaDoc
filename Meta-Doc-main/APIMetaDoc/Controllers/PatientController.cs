@@ -14,7 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class PatientController : ApiController
     {
-        [PatientAccess]
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/patients")]
@@ -32,8 +32,9 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
-        [Logged]
+        //[PatientAccess]
+        //[DoctorAccess]
+        //[Logged]
         [HttpGet]
         [Route("api/patients/{id}")]
         public HttpResponseMessage Patients(int Id)
@@ -41,7 +42,11 @@ namespace APIMetaDoc.Controllers
             try
             {
                 var data = PatientService.Get(Id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
             }
             catch (Exception ex)
             {
@@ -64,15 +69,15 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[PatientAccess]
-        //[Logged]
+        [PatientAccess]
+        [Logged]
         [HttpPost]
         [Route("api/patients/update")]
         public HttpResponseMessage Update(PatientDTO data)
         {   try
             {
                 var res = PatientService.Update(data);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                return Request.CreateResponse(HttpStatusCode.OK, new {Message = "Patient Updated"});
             }
             catch (Exception ex)
             {
@@ -80,8 +85,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[Logged]
-        //[PatientAccess]
+        [Logged]
+        [PatientAccess]
         [HttpPost]
         [Route("api/patients/delete/{id}")]
         public HttpResponseMessage Delete(int Id)
@@ -93,7 +98,7 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = PatientService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, "Deleted");
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Deleted" });
 
                 }
                 catch (Exception ex)

@@ -14,6 +14,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*","*","*")]
     public class AppointmentController : ApiController
     {
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/appoinments")]
@@ -31,6 +32,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
+        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/appoinments/{id}")]
@@ -47,6 +50,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [PatientAccess]
         [Logged]
         [HttpPost]
         [Route("api/appoinments/create")]
@@ -88,10 +92,12 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Appoinment not found" });
         }
 
+        [PatientAccess]
+        [DoctorAccess]
         [Logged]
         [HttpPost]
-        [Route("api/appoinments/delete/{id}")] //{id}
-        public HttpResponseMessage Delete(int Id) //int id
+        [Route("api/appoinments/delete/{id}")]
+        public HttpResponseMessage Delete(int Id) 
         {
             var exmp = PatientAppointmentService.Get(Id);
 

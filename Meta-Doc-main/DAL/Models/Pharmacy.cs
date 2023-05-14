@@ -10,7 +10,7 @@ namespace DAL.Models
 {
     public class Pharmacy
     {
-        [Key, Range(4000, 4999)]
+        [Key]
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
