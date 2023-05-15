@@ -98,7 +98,7 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = PatientService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Deleted" });
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Patient Deleted" });
 
                 }
                 catch (Exception ex)
