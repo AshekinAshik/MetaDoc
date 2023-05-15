@@ -15,7 +15,7 @@ namespace APIMetaDoc.Controllers
     public class ProductController : ApiController
     {
         [PharmacyAccess]
-        [PatientAccess]
+        //[PatientAccess] copy kore controler boshiye dibo
         [Logged]
         [HttpGet]
         [Route("api/products")]

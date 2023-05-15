@@ -91,5 +91,29 @@ namespace BLL.Services
             var result_user = DataAccessFactory.UserData().Update(data_user);
             return obj;
         }
+
+        public static DoctorReviewDTO GetwithReviews(int id)
+        {
+            var data = DataAccessFactory.DoctorData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Doctor, DoctorReviewDTO>();
+                c.CreateMap<Review, ReviewDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<DoctorReviewDTO>(data);
+            return mapped;
+        }
+
+        public static DoctorAppointmentDTO GetwithAppointment(int id)
+        {
+            var data = DataAccessFactory.DoctorData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Doctor, DoctorAppointmentDTO>();
+                c.CreateMap<PatientAppointment, PatientAppoinmentDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<DoctorAppointmentDTO>(data);
+            return mapped;
+        }
     }
 }

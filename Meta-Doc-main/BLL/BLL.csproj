@@ -48,13 +48,17 @@
     <Compile Include="Class1.cs" />
     <Compile Include="DTOs\AdminDTO.cs" />
     <Compile Include="DTOs\DiseaseSymptomDTO.cs" />
+    <Compile Include="DTOs\DoctorAppointmentDTO.cs" />
     <Compile Include="DTOs\DoctorDTO.cs" />
+    <Compile Include="DTOs\DoctorReviewDTO.cs" />
     <Compile Include="DTOs\OrderDetailDTO.cs" />
     <Compile Include="DTOs\OrderDTO.cs" />
     <Compile Include="DTOs\PatientAppoinmentDTO.cs" />
     <Compile Include="DTOs\PatientDTO.cs" />
     <Compile Include="DTOs\PaymentDTO.cs" />
     <Compile Include="DTOs\PharmacyDTO.cs" />
+    <Compile Include="DTOs\PharmacyOrderDetailDTO.cs" />
+    <Compile Include="DTOs\PharmacyOrderDTO.cs" />
     <Compile Include="DTOs\PharProductDTO.cs" />
     <Compile Include="DTOs\ProductDTO.cs" />
     <Compile Include="DTOs\ReviewDTO.cs" />

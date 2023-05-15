@@ -26,30 +26,32 @@
 		app.controller('loginCtrl',function($scope,$http){
 			$scope.login=function(){
 				var v = $scope.l;
-                
+                debugger;
 				$http.post("https://localhost:44333/api/login",v).then(function(resp){
-                    
-                    debugger;
 					localStorage.setItem("TKey",resp.data.TKey);
+					//debugger;
 				},function(err){
-				
+					//debugger;
 				});
                 
 				
 				
 			};
 		});
-		// app.controller('postCmntCtrl',function($scope,$http){
-		// 	$scope.load=function(){
-		// 		//alert("OK");
-		// 		$http.get("https://localhost:44333/api/posts/1/comments").then(function(resp){
-		// 			$scope.post = resp.data;
-		// 		},function(err){
-		// 			$scope.msg = err.data.Msg;
-		// 		});
-		// 	};
+
+		app.controller('docCtrl',function($scope,$http){
+			$scope.load=function(){
+				//alert("OK");
+				//debugger;
+				$http.get("https://localhost:44333/api/admin/2").then(function(resp){
+					$scope.doctor = resp.data;
+					//debugger;
+				},function(err){
+					$scope.msg = err.data.Msg;
+				});
+			};
 			
-		// });
+		});
 		
 	</script>
 	<body ng-app="my-app">
@@ -61,15 +63,14 @@
 			</form>
 		</div>
 		
-		<!-- <div ng-controller="postCmntCtrl">
+		<div ng-controller="docCtrl">
 			<h2>{{msg}}</h2>
+			<h1>Hello, Dr. {{doctor.Name}} </h1><br>
+			<h1>Your Email: {{doctor.Email}}</h1>
+			<h1>Your Phone: {{doctor.Contact}}</h1>
+			<h1>Your Role: {{doctor.Role}}</h1>
+
 			<button ng-click="load()">Load<button>
-			<p>{{post.Title}} by {{post.PostedBy}}</p>
-			<ul>	
-				<li ng-repeat="c in post.Comments">
-					{{c.CommentText}} <sub>{{c.CommentedBy}} [{{c.Time}}]</sub>
-				</li>
-			</ul>
-		</div> -->
+		</div>
 	</body>
 </html>

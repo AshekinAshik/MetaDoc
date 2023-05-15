@@ -14,7 +14,6 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class DoctorController : ApiController
     {
-        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/doctors")]
@@ -38,16 +37,6 @@ namespace APIMetaDoc.Controllers
         [Route("api/doctors/{id}")]
         public HttpResponseMessage Doctors(int Id)
         {
-            //try
-            //{
-            //    var data = DoctorService.Get(Id);
-            //    return Request.CreateResponse(HttpStatusCode.OK, data);
-            //}
-            //catch (Exception ex)
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
-            //}
-
             try
             {
                 var data = DoctorService.Get(Id);
@@ -127,6 +116,40 @@ namespace APIMetaDoc.Controllers
             }
             else
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new {Message= "Doctor not found" });
+        }
+
+        [DoctorAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/doctors/{id}/reviews")]
+        public HttpResponseMessage DoctorReviews(int id)
+        {
+            try
+            {
+                var data = DoctorService.GetwithReviews(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [DoctorAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/doctors/{id}/appointments")]
+        public HttpResponseMessage DoctorAppointments(int id)
+        {
+            try
+            {
+                var data = DoctorService.GetwithAppointment(id);
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
         }
     }
 }

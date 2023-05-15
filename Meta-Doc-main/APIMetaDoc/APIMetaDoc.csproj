@@ -98,10 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Auth\AdminAccess.cs" />
     <Compile Include="Auth\DoctorAccess.cs" />
     <Compile Include="Auth\Logged.cs" />
     <Compile Include="Auth\PatientAccess.cs" />
     <Compile Include="Auth\PharmacyAccess.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DiseaseController.cs" />

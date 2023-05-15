@@ -32,7 +32,6 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
         [DoctorAccess]
         [Logged]
         [HttpGet]
@@ -67,6 +66,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
+        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/appoinments/update")]
@@ -93,7 +93,6 @@ namespace APIMetaDoc.Controllers
         }
 
         [PatientAccess]
-        [DoctorAccess]
         [Logged]
         [HttpPost]
         [Route("api/appoinments/delete/{id}")]

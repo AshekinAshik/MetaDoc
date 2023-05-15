@@ -14,7 +14,6 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class PatientController : ApiController
     {
-        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/patients")]
@@ -32,9 +31,8 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        //[PatientAccess]
-        //[DoctorAccess]
-        //[Logged]
+        [PatientAccess]
+        [Logged]
         [HttpGet]
         [Route("api/patients/{id}")]
         public HttpResponseMessage Patients(int Id)

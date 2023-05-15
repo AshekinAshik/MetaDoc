@@ -12,17 +12,18 @@ using System.Web.Http.Cors;
 namespace APIMetaDoc.Controllers
 {
     [EnableCors("*", "*", "*")]
-    public class OrderController : ApiController
+    public class AdminController : ApiController
     {
-        [PharmacyAccess]
+
+        [AdminAccess]
         [Logged]
         [HttpGet]
-        [Route("api/orders")]
-        public HttpResponseMessage Orders()
+        [Route("api/admins")]
+        public HttpResponseMessage Admins()
         {
             try
             {
-                var data = OrderService.Get();
+                var data = AdminService.Get();
 
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
@@ -31,17 +32,21 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
             }
         }
-        
-        [PatientAccess]
+
+        [AdminAccess]
         [Logged]
         [HttpGet]
-        [Route("api/orders/{id}")]
-        public HttpResponseMessage Orders(int Id)
+        [Route("api/admins/{id}")]
+        public HttpResponseMessage admins(int Id)
         {
             try
             {
-                var data = OrderService.Get(Id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                var data = AdminService.Get(Id);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
             }
             catch (Exception ex)
             {
@@ -49,15 +54,14 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
-        [Logged]
+        [AdminAccess]
         [HttpPost]
-        [Route("api/orders/create")]
-        public HttpResponseMessage Create(OrderDTO data)
+        [Route("api/admins/create")]
+        public HttpResponseMessage Create(AdminDTO data)
         {
             try
             {
-                var res = OrderService.Create(data);
+                var res = AdminService.Create(data);
                 return Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
@@ -66,22 +70,21 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
+        [AdminAccess]
         [Logged]
         [HttpPost]
-        [Route("api/orders/update")]
-        public HttpResponseMessage Update(OrderDTO data)
+        [Route("api/admins/update")]
+        public HttpResponseMessage Update(AdminDTO data)
         {
-
-            var exmp = OrderService.Get(data.Id);
+            var exmp = AdminService.Get(data.Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = OrderService.Update(data);
+                    var res = AdminService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Updated" });
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Admin Updated" });
 
                 }
                 catch (Exception ex)
@@ -90,23 +93,23 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Order not found" });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Admin not found" });
         }
 
-        [PatientAccess]
         [Logged]
+        [AdminAccess]
         [HttpPost]
-        [Route("api/orders/delete/{id}")] //{id}
-        public HttpResponseMessage Delete(int Id) //int id
+        [Route("api/admins/delete/{id}")]
+        public HttpResponseMessage Delete(int Id)
         {
-            var exmp = OrderService.Get(Id);
+            var exmp = AdminService.Get(Id);
 
             if (exmp != null)
             {
                 try
                 {
-                    var res = OrderService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Deleted" });
+                    var res = AdminService.Delete(Id);
+                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Admin Deleted" });
 
                 }
                 catch (Exception ex)
@@ -115,7 +118,7 @@ namespace APIMetaDoc.Controllers
                 }
             }
             else
-                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Order not found" });
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = "Admin not found" });
         }
     }
 }

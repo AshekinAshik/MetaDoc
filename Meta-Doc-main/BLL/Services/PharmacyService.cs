@@ -90,5 +90,29 @@ namespace BLL.Services
 
             return obj;
         }
+
+        public static PharmacyOrderDTO GetwithOrders(int id)
+        {
+            var data = DataAccessFactory.PharmacyData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Pharmacy, PharmacyOrderDTO>();
+                c.CreateMap<Order, OrderDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<PharmacyOrderDTO>(data);
+            return mapped;
+        }
+
+        public static PharmacyOrderDetailDTO GetwithOrderDetail(int id)
+        {
+            var data = DataAccessFactory.PharmacyData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Pharmacy, PharmacyOrderDetailDTO>();
+                c.CreateMap<OrderDetail, OrderDetailDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<PharmacyOrderDetailDTO>(data);
+            return mapped;
+        }
     }
 }

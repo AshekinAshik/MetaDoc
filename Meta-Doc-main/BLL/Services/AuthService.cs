@@ -56,6 +56,14 @@ namespace BLL.Services
                             return mapper.Map<TokenDTO>(ret);
                         }
                     }
+                    else if (IsAdmin(token.TKey))
+                    {
+                        var result1 = DataAccessFactory.MatchPharmacyData().Match(username);
+                        if (token.Username == result1.Username)
+                        {
+                            return mapper.Map<TokenDTO>(ret);
+                        }
+                    }
                 }
             }
             return null;
@@ -92,6 +100,16 @@ namespace BLL.Services
             var existingToken = DataAccessFactory.TokenData().Get(TKey);
             if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Doctor") 
                 && existingToken.Username == DataAccessFactory.UserData().Get(globalUsername).Username)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool IsAdmin(string TKey)
+        {
+            var existingToken = DataAccessFactory.TokenData().Get(TKey);
+            if (IsTokenValid(TKey) && existingToken.User.Role.Equals("Admin"))
             {
                 return true;
             }

@@ -13,7 +13,7 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*", "*", "*")]
     public class OrderDetailController : ApiController
     {
-        [PatientAccess]
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/orderdetails")]
@@ -31,7 +31,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [PatientAccess]
+        [PharmacyAccess]
         [Logged]
         [HttpGet]
         [Route("api/orderdetails/{id}")]

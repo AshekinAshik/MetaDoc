@@ -15,7 +15,6 @@ namespace APIMetaDoc.Controllers
     public class DiseaseController : ApiController
     {
         [DoctorAccess]
-        [PatientAccess]
         [Logged]
         [HttpGet]
         [Route("api/diseases")]
@@ -33,7 +32,6 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [DoctorAccess]
         [PatientAccess]
         [Logged]
         [HttpGet]
