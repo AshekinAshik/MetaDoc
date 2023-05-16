@@ -35,5 +35,17 @@ namespace BLL.Services
             var mapped = mapper.Map<PharProductDTO>(data);
             return mapped;
         }
+
+        public static PharProductDTO GetPhar(int Id)
+        {
+            var data = DataAccessFactory.PharProductData().Get(Id);
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<PharProduct, PharProductDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<PharProductDTO>(data);
+            return mapped;
+        }
     }
 }

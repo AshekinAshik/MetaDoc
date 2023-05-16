@@ -14,7 +14,6 @@ namespace APIMetaDoc.Controllers
     [EnableCors("*","*","*")]
     public class AppointmentController : ApiController
     {
-        [DoctorAccess]
         [Logged]
         [HttpGet]
         [Route("api/appoinments")]
@@ -32,7 +31,7 @@ namespace APIMetaDoc.Controllers
             }
         }
 
-        [DoctorAccess]
+        
         [Logged]
         [HttpGet]
         [Route("api/appoinments/{id}")]

@@ -49,12 +49,15 @@
     <Compile Include="DTOs\AdminDTO.cs" />
     <Compile Include="DTOs\DiseaseSymptomDTO.cs" />
     <Compile Include="DTOs\DoctorAppointmentDTO.cs" />
+    <Compile Include="DTOs\DoctorDiseaseSymptomDTO.cs" />
     <Compile Include="DTOs\DoctorDTO.cs" />
     <Compile Include="DTOs\DoctorReviewDTO.cs" />
     <Compile Include="DTOs\OrderDetailDTO.cs" />
     <Compile Include="DTOs\OrderDTO.cs" />
     <Compile Include="DTOs\PatientAppoinmentDTO.cs" />
+    <Compile Include="DTOs\PatientAppoinmentInfoDTO.cs" />
     <Compile Include="DTOs\PatientDTO.cs" />
+    <Compile Include="DTOs\PatientReviewDTO.cs" />
     <Compile Include="DTOs\PaymentDTO.cs" />
     <Compile Include="DTOs\PharmacyDTO.cs" />
     <Compile Include="DTOs\PharmacyOrderDetailDTO.cs" />

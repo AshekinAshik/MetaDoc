@@ -115,5 +115,17 @@ namespace BLL.Services
             var mapped = mapper.Map<DoctorAppointmentDTO>(data);
             return mapped;
         }
+
+        public static DoctorDiseaseSymptomDTO GetwithDiseaseSymptoms(int id)
+        {
+            var data = DataAccessFactory.DoctorData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Doctor, DoctorDiseaseSymptomDTO>();
+                c.CreateMap<DiseaseSymptom, DiseaseSymptomDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<DoctorDiseaseSymptomDTO>(data);
+            return mapped;
+        }
     }
 }

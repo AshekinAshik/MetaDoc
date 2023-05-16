@@ -44,7 +44,7 @@ namespace APIMetaDoc.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, data);
                 }
-                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Patient");
             }
             catch (Exception ex)
             {
@@ -96,8 +96,12 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = PatientService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Patient Deleted" });
-
+                    if (exmp.Username == AuthService.Check())
+                    {
+                        //return Request.CreateResponse(HttpStatusCode.OK, data);
+                        return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Patient Deleted" });
+                    }
+                    else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Patient");
                 }
                 catch (Exception ex)
                 {
@@ -106,6 +110,83 @@ namespace APIMetaDoc.Controllers
             }
             else
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Patient not found");
+        }
+
+        [PatientAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/patients/reviews/{id}")]
+        public HttpResponseMessage PatientReview(int id)
+        {
+            try
+            {
+                var data = PatientService.GetwithReviews(id);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Patient");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [PatientAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/patients/diseasessymptoms")]
+        public HttpResponseMessage Symptoms()
+        {
+            try
+            {
+                var data = DiseaseSymptomService.Get();
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [PatientAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/patients/appointmentinfo/{id}")]
+        public HttpResponseMessage AppointmentInfo(int id)
+        {
+            try
+            {
+                var data = PatientService.GetwithAppointmentInfos(id);
+                //if (data.Username == AuthService.Check())
+                //{
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                //}
+                //else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Patient");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [PatientAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/patients/products")]
+        public HttpResponseMessage Products()
+        {
+            try
+            {
+                var data = ProductService.Get();
+
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
         }
     }
 }

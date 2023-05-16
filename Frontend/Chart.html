@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="my-app">
+
+<head>
+  <title>AngularJS Chart Example</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+</head>
+
+<body>
+  <div ng-controller="ChartController">
+    <canvas id="myChart" width="400" height="200"></canvas>
+  </div>
+
+  <script>
+    angular.module('my-app', [])
+
+      .controller('ChartController', function($scope, $http) {
+        $scope.labels = [];
+        $scope.data = [];
+        $scope.options = {
+          responsive: true
+        };
+
+        // Fetch data from the database
+        $http.get('https://api/orders')
+        
+          .then(function(response) {
+            debugger;
+            // Extract data from the response
+            var chartData = response.data;
+
+            // Populate labels and data arrays from the retrieved data
+            chartData.forEach(function(item) {
+              $scope.labels.push(item.Id);
+              $scope.data.push(item.OrderQuantity);
+            });
+
+            // Create the chart
+            var ctx = document.getElementById('myChart').getContext('2d');
+            debugger;
+            var myChart = new Chart(ctx, {
+              type: 'bar',
+              data: {
+                labels: $scope.labels,
+                datasets: [{
+                  label: 'Data',
+                  data: $scope.data,
+                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                  borderColor: 'rgba(75, 192, 192, 1)',
+                  borderWidth: 1
+                }]
+              },
+              options: $scope.options
+            });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
+  </script>
+</body>
+
+</html>

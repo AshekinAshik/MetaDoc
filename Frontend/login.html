@@ -43,7 +43,7 @@
 			$scope.load=function(){
 				//alert("OK");
 				//debugger;
-				$http.get("https://localhost:44333/api/admin/2").then(function(resp){
+				$http.get("https://localhost:44333/api/doctors/26").then(function(resp){
 					$scope.doctor = resp.data;
 					//debugger;
 				},function(err){
@@ -68,7 +68,6 @@
 			<h1>Hello, Dr. {{doctor.Name}} </h1><br>
 			<h1>Your Email: {{doctor.Email}}</h1>
 			<h1>Your Phone: {{doctor.Contact}}</h1>
-			<h1>Your Role: {{doctor.Role}}</h1>
 
 			<button ng-click="load()">Load<button>
 		</div>

@@ -12,7 +12,7 @@ namespace BLL.DTOs
         public int Id { get; set; }
         [Required]
         public DateTime AppointmentDate { get; set; }
-        public string Status { get { return Status; } set { Status = "approve"; } }
+        public string Status { get; set; }
 
         public int Doctor_Id { get; set; }
         //[ForeignKey("DiseaseSymptom")]

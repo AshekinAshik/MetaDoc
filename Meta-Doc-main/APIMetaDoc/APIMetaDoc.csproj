@@ -112,6 +112,7 @@
     <Compile Include="Controllers\OrderDetailController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Controllers\PharmacyController.cs" />
+    <Compile Include="Controllers\PharProductController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />

@@ -44,7 +44,7 @@ namespace APIMetaDoc.Controllers
                 {
                     return Request.CreateResponse(HttpStatusCode.OK, data);
                 }
-                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Doctor");
             }
             catch (Exception ex)
             {
@@ -81,7 +81,11 @@ namespace APIMetaDoc.Controllers
                 {
                     var res = DoctorService.Update(data);
 
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Doctor Updated"});
+                    if (res.Username == AuthService.Check())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Doctor Updated" });
+                    }
+                    else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
 
                 }
                 catch (Exception ex)
@@ -106,8 +110,12 @@ namespace APIMetaDoc.Controllers
                 try
                 {
                     var res = DoctorService.Delete(Id);
-                    return Request.CreateResponse(HttpStatusCode.OK, new {Message= "Doctor Deleted"} );
 
+                    if (exmp.Username == AuthService.Check())
+                    {
+                        return Request.CreateResponse(HttpStatusCode.OK, new { Message = "Doctor Deleted" });
+                    }
+                    else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Search");
                 }
                 catch (Exception ex)
                 {
@@ -127,7 +135,11 @@ namespace APIMetaDoc.Controllers
             try
             {
                 var data = DoctorService.GetwithReviews(id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Doctor");
             }
             catch (Exception ex)
             {
@@ -144,7 +156,32 @@ namespace APIMetaDoc.Controllers
             try
             {
                 var data = DoctorService.GetwithAppointment(id);
-                return Request.CreateResponse(HttpStatusCode.OK, data);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Doctor");
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
+            }
+        }
+
+        [DoctorAccess]
+        [Logged]
+        [HttpGet]
+        [Route("api/doctors/{id}/diseasesymptoms")]
+        public HttpResponseMessage DoctorDiseaseSymptoms(int id)
+        {
+            try
+            {
+                var data = DoctorService.GetwithDiseaseSymptoms(id);
+                if (data.Username == AuthService.Check())
+                {
+                    return Request.CreateResponse(HttpStatusCode.OK, data);
+                }
+                else return Request.CreateResponse(HttpStatusCode.OK, "Invalid Doctor");
             }
             catch (Exception ex)
             {

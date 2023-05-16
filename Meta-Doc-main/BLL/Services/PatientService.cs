@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BLL.Services
 {
@@ -101,6 +102,30 @@ namespace BLL.Services
             var result_user = DataAccessFactory.UserData().Update(data_user);
 
             return obj;
+        }
+
+        public static PatientReviewDTO GetwithReviews(int id)
+        {
+            var data = DataAccessFactory.PatientData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Patient, PatientReviewDTO>();
+                c.CreateMap<Review, ReviewDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<PatientReviewDTO>(data);
+            return mapped;
+        }
+
+        public static PatientAppoinmentInfoDTO GetwithAppointmentInfos(int id)
+        {
+            var data = DataAccessFactory.PatientData().Get(id);
+            var cfg = new MapperConfiguration(c => {
+                c.CreateMap<Patient, PatientAppoinmentInfoDTO>();
+                c.CreateMap<PatientAppointment, PatientAppoinmentDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var mapped = mapper.Map<PatientAppoinmentInfoDTO>(data);
+            return mapped;
         }
     }
 }
