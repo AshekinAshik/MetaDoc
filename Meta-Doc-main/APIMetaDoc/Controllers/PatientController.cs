@@ -79,7 +79,7 @@ namespace APIMetaDoc.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new { Message = ex.Message });
             }
         }
 

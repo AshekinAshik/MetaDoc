@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    internal class AdminRepo : Repo, IRepo<Admin, int, Admin>
+    internal class AdminRepo : Repo, IRepo<Admin, int, Admin>, IAdminLogin<Admin, string>
     {
         public Admin Create(Admin obj)
         {
@@ -33,6 +33,11 @@ namespace DAL.Repos
         public Admin Get(int id)
         {
             return db.Admins.Find(id);
+        }
+
+        public Admin Match(string username)
+        {
+            return db.Admins.FirstOrDefault(x => x.Username == username);
         }
 
         public Admin Update(Admin obj)

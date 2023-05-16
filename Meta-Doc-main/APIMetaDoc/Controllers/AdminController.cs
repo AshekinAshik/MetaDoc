@@ -53,8 +53,7 @@ namespace APIMetaDoc.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, new { Message = ex.Message });
             }
         }
-
-        [AdminAccess]
+        
         [HttpPost]
         [Route("api/admins/create")]
         public HttpResponseMessage Create(AdminDTO data)

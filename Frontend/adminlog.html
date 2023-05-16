@@ -39,12 +39,26 @@
 			};
 		});
 
-		app.controller('docCtrl',function($scope,$http){
+		app.controller('adminCtrl',function($scope,$http){
 			$scope.load=function(){
 				//alert("OK");
 				//debugger;
-				$http.get("https://localhost:44333/api/doctors/26").then(function(resp){
-					$scope.doctor = resp.data;
+				$http.get("https://localhost:44333/api/admins/2").then(function(resp){
+					$scope.admin = resp.data;
+					//debugger;
+				},function(err){
+					$scope.msg = err.data.Msg;
+				});
+			};
+			
+		});
+        //adminAccessCtrl
+        app.controller('adminAccessCtrl',function($scope,$http){
+			$scope.access=function(){
+				//alert("OK");
+				//debugger;
+				$http.get("https://localhost:44333/api/orders").then(function(resp){
+					$scope.adminAccess = resp.data;
 					//debugger;
 				},function(err){
 					$scope.msg = err.data.Msg;
@@ -63,16 +77,20 @@
 			</form>
 		</div>
 		
-		<div ng-controller="docCtrl">
+		<div ng-controller="adminCtrl">
 			<h2>{{msg}}</h2>
-			<h1>Hello, {{doctor.Name}} </h1><br>
-			<h1>Your Email: {{doctor.Email}}</h1>
-			<h1>Your Phone: {{doctor.Contact}}</h1>
-			<h1>Your Chamber located at: {{doctor.Chamber}}</h1>
-			<h1>Your have completed: {{doctor.Degree}}</h1>
-			
+			<h1>Hello, {{admin.Name}} </h1><br>
 
 			<button ng-click="load()">Load<button>
 		</div>
+
+        <div ng-controller="adminAccess">
+            <ul>
+                <li ng-repeat="c in Orders">Quantity: {{c.OrderQuantity}}-----Total Cost{{c.TotalCost}}</li>
+
+            </ul>
+
+            <button ng-click()="access()">Show Orders</button>
+        </div>
 	</body>
 </html>

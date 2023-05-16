@@ -15,6 +15,7 @@ namespace APIMetaDoc.Controllers
     public class OrderController : ApiController
     {
         //[Logged]
+        [AdminAccess]
         [HttpGet]
         [Route("api/orders")]
         public HttpResponseMessage Orders()

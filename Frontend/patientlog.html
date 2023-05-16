@@ -43,8 +43,8 @@
 			$scope.load=function(){
 				//alert("OK");
 				//debugger;
-				$http.get("https://localhost:44333/api/doctors/26").then(function(resp){
-					$scope.doctor = resp.data;
+				$http.get("https://localhost:44333/api/patients/38").then(function(resp){
+					$scope.patient = resp.data;
 					//debugger;
 				},function(err){
 					$scope.msg = err.data.Msg;
@@ -65,11 +65,12 @@
 		
 		<div ng-controller="docCtrl">
 			<h2>{{msg}}</h2>
-			<h1>Hello, {{doctor.Name}} </h1><br>
-			<h1>Your Email: {{doctor.Email}}</h1>
-			<h1>Your Phone: {{doctor.Contact}}</h1>
-			<h1>Your Chamber located at: {{doctor.Chamber}}</h1>
-			<h1>Your have completed: {{doctor.Degree}}</h1>
+			<h1>Hello, {{patient.Name}} </h1><br>
+			<h1>Your Email: {{patient.Email}}</h1>
+			<h1>Your Phone: {{patient.Contact}}</h1>
+            
+			<h1>Gender : {{patient.Gender}}</h1>
+			<h1>Your Profession: {{patient.Profession}}</h1>
 			
 
 			<button ng-click="load()">Load<button>

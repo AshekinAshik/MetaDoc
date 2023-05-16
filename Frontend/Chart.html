@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="my-app">
+<html ng-app="myApp">
 
 <head>
   <title>AngularJS Chart Example</title>
@@ -13,50 +13,30 @@
   </div>
 
   <script>
-    angular.module('my-app', [])
-
-      .controller('ChartController', function($scope, $http) {
-        $scope.labels = [];
-        $scope.data = [];
+    angular.module('myApp', [])
+      .controller('ChartController', function($scope) {
+        $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+        $scope.data = [65, 59, 80, 81, 56, 55, 40];
         $scope.options = {
           responsive: true
         };
 
-        // Fetch data from the database
-        $http.get('https://api/orders')
-        
-          .then(function(response) {
-            debugger;
-            // Extract data from the response
-            var chartData = response.data;
-
-            // Populate labels and data arrays from the retrieved data
-            chartData.forEach(function(item) {
-              $scope.labels.push(item.Id);
-              $scope.data.push(item.OrderQuantity);
-            });
-
-            // Create the chart
-            var ctx = document.getElementById('myChart').getContext('2d');
-            debugger;
-            var myChart = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: $scope.labels,
-                datasets: [{
-                  label: 'Data',
-                  data: $scope.data,
-                  backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                  borderColor: 'rgba(75, 192, 192, 1)',
-                  borderWidth: 1
-                }]
-              },
-              options: $scope.options
-            });
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
+        // Create the chart
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: $scope.labels,
+            datasets: [{
+              label: 'Data',
+              data: $scope.data,
+              backgroundColor: 'rgba(75, 192, 192, 0.2)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }]
+          },
+          options: $scope.options
+        });
       });
   </script>
 </body>

@@ -84,5 +84,9 @@ namespace DAL
         {
             return new PharmacyRepo();
         }
+        public static IAdminLogin<Admin, string> MatchAdminData()
+        {
+            return new AdminRepo();
+        }
     }
 }

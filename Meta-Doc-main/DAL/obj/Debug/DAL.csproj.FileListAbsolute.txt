@@ -32,3 +32,5 @@ C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.updatingAnnotation.resources
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seedingDoctorwith1memeber.resources
 C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.seedingagaindoctor1member.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.adminupdate.resources
+C:\Users\ashek\OneDrive\Documents\GitHub\MetaDoc\Meta-Doc-main\DAL\obj\Debug\DAL.Migrations.anotherupdateadmin.resources

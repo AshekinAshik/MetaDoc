@@ -58,7 +58,7 @@ namespace BLL.Services
                     }
                     else if (IsAdmin(token.TKey))
                     {
-                        var result1 = DataAccessFactory.MatchPharmacyData().Match(username);
+                        var result1 = DataAccessFactory.MatchAdminData().Match(username);
                         if (token.Username == result1.Username)
                         {
                             return mapper.Map<TokenDTO>(ret);

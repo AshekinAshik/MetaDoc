@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Interfaces\IAdminLogin.cs" />
     <Compile Include="Interfaces\IAuth.cs" />
     <Compile Include="Interfaces\IDoctorLogin.cs" />
     <Compile Include="Interfaces\IPatientLogin.cs" />
@@ -140,6 +141,14 @@
     <Compile Include="Migrations\202305100628378_seedingagaindoctor1member.cs" />
     <Compile Include="Migrations\202305100628378_seedingagaindoctor1member.designer.cs">
       <DependentUpon>202305100628378_seedingagaindoctor1member.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305160503532_adminupdate.cs" />
+    <Compile Include="Migrations\202305160503532_adminupdate.designer.cs">
+      <DependentUpon>202305160503532_adminupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305160510041_anotherupdateadmin.cs" />
+    <Compile Include="Migrations\202305160510041_anotherupdateadmin.designer.cs">
+      <DependentUpon>202305160510041_anotherupdateadmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DiseaseSymptom.cs" />
@@ -241,6 +250,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305100628378_seedingagaindoctor1member.resx">
       <DependentUpon>202305100628378_seedingagaindoctor1member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305160503532_adminupdate.resx">
+      <DependentUpon>202305160503532_adminupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305160510041_anotherupdateadmin.resx">
+      <DependentUpon>202305160510041_anotherupdateadmin.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
