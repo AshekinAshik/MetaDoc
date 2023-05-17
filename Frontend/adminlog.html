@@ -56,10 +56,10 @@
         app.controller('adminAccessCtrl',function($scope,$http){
 			$scope.access=function(){
 				//alert("OK");
-				//debugger;
+				debugger;
 				$http.get("https://localhost:44333/api/orders").then(function(resp){
 					$scope.adminAccess = resp.data;
-					//debugger;
+					debugger;
 				},function(err){
 					$scope.msg = err.data.Msg;
 				});
@@ -86,7 +86,8 @@
 
         <div ng-controller="adminAccess">
             <ul>
-                <li ng-repeat="c in Orders">Quantity: {{c.OrderQuantity}}-----Total Cost{{c.TotalCost}}</li>
+                
+                <li ng-repeat="c in Orders">Quantity: {{Orders.OrderQuantity}}-----Total Cost{{c.TotalCost}}</li>
 
             </ul>
 
